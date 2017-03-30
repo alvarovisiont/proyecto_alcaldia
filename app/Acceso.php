@@ -60,10 +60,13 @@ class Acceso extends Model
                                 }
                                     $menu.='
                                       </ul>
-                                    </li>
-                                </ul>
-                            </li>';
+                                    </li>';
+                                
+                            
                         }
+                        $menu.='
+                        </ul>
+                    </li>';
         }
         return $menu;
     }

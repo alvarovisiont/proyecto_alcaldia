@@ -50,11 +50,11 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{{ url('escritorio') }}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>P4</b>D</span>
+          <span class="logo-mini"><b>Sis</b>t</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Tesorería</b></span>
+          <span class="logo-lg"><b>Sistema</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -71,15 +71,19 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs">USUARIO</span>
+                  <span class="hidden-xs">{{Auth::user()->nombres.' '.Auth::user()->apellidos}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      DESCRIPCCION
-                      <small>LEYENDA DEL USUARIO ONLINE</small>
+                      <strong>Cedula:</strong>{{Auth::user()->nac.'-'.Auth::user()->cedula}}<br>
+                      <strong>Telefono:</strong>{{Auth::user()->telefono}}<br>
+                      <strong>Rol:</strong>{{Auth::user()->roles->nombre}}<br>
+                      <strong>Departamento:</strong>{{Auth::user()->departamentos->nombre}}
+
+                      
                     </p>
                   </li>
                   
@@ -185,7 +189,7 @@
       </div><!-- /.content-wrapper -->
       <!--Fin-Contenido-->
       <footer class="main-footer">
-        <strong>Copyright &copy; 2016-2017 <a href="http://www.project4design.com.ve">Project 4 Design C.A</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016-2017 <a href="#">Alcaldía del municipio sucre</a>.</strong> All rights reserved.
       </footer>
 
       

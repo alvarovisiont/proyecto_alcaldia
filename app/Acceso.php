@@ -14,6 +14,8 @@ class Acceso extends Model
     //
     protected $table = "acceso";
 
+    protected $primaryKey = 'id_acceso';
+
     protected $fillable = ['user_id', 'departamento_id', 'area_id', 'sub_area_id'];
 
 //==========================Función para mostrar el menú ===============================================

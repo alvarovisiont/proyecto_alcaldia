@@ -16,9 +16,6 @@ use App\Sub_area;
 
 Route::get('/', 'LoginController@login')->name('login_entrar');
 
-Route::resource('/departamentos','DepartamentosController');
-Route::resource('/areas','AreasController');
-
 Route::get('/escritorio', 'EscritorioController@index')->name('escritorio');
 
 Route::get('/logout', 'LoginController@logout')->name('logout');
@@ -37,15 +34,21 @@ Route::resource('usuario', 'UsuariosController');
 Route::resource('sub_area', 'SubAreaController');
  //*****************************************************************
 
-//================ ROLES ===================================
-Route::get('roles','RolesController@index')->name('roles.index');
-Route::get('roles/create' , 'RolesController@create');
-Route::post('roles','RolesController@registrar')->name('roles.store');
-Route::put('roles/{id}' ,'RolesController@editar');
-Route::get('roles/{id}/edit','RolesController@update')->name('roles.update');
-Route::get('roles/{id}' , 'RolesController@show');
-Route::delete('roles/{id}','RolesController@destroy');
+//========================= ROLES ===================================
+	Route::get('roles','RolesController@index')->name('roles.index');
+	Route::get('roles/create' , 'RolesController@create');
+	Route::post('roles','RolesController@registrar')->name('roles.store');
+	Route::put('roles/{id}' ,'RolesController@editar');
+	Route::get('roles/{id}/edit','RolesController@update')->name('roles.update');
+	Route::get('roles/{id}' , 'RolesController@show');
+	Route::delete('roles/{id}','RolesController@destroy');
  //*****************************************************************
+
+//========================== DEVELOOPERS ===============================
+	Route::resource('/departamentos','DepartamentosController');
+	Route::resource('/areas','AreasController');
+
+//**********************************************************************
 
 $sub_area = Sub_area::all();
 

@@ -74,10 +74,6 @@
 				
 			}
 
-			$("#tabla").dataTable({
-				'language' : {"url" : "json/esp.json"}
-			});
-
 			$(".eliminar").click(function(){
 
 				var btn  = $(this),

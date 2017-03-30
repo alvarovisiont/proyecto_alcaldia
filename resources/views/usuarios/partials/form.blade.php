@@ -87,11 +87,10 @@
 			</select>
 		</div>
 	</div>
-	
-	@if(empty($acceso['original']))
-		@include('usuarios.partials.areas_crear', ['departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas]);
-	@else
+	@if($validar_accion)
 		@include('usuarios.partials.areas_modificar', ['departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas, 'acceso' => $acceso]);
+	@else
+		@include('usuarios.partials.areas_crear', ['departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas]);
 	@endif
 	<div class="form-group">
 		<div class="col-md-12">

@@ -44,8 +44,9 @@ class UsuariosController extends Controller
         $sub_areas = new Sub_area;
         $acceso = new Acceso;
 
-        
-        $datos = ['usuario' => $usuario, 'roles' => $roles, 'departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas, 'acceso' => $acceso];
+        $validar_accion = false;
+
+        $datos = ['usuario' => $usuario, 'roles' => $roles, 'departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas, 'acceso' => $acceso, 'validar_accion' => $validar_accion];
 
         return view('usuarios.create')->with($datos);
     }
@@ -125,12 +126,19 @@ class UsuariosController extends Controller
 
         $roles = Roles::select('id_rol', 'nombre')->get();
         $departamentos = Departamentos::select('nombre', 'id_departamento')->get();
-        $acceso = Acceso::where('user_id', '=', $id)->first();
+        $acceso = Acceso::where('user_id', '=', $id)->get();
+
+        $validar_accion = false;
+
+        if(count($acceso) > 0)
+        {
+            $validar_accion = true;            
+        }
         
         $areas = new Area;
         $sub_areas = new Sub_area;
 
-        $datos = ['usuario' => $usuario, 'departamentos' => $departamentos, 'roles' => $roles, 'acceso' => $acceso, 'areas' => $areas, 'sub_areas' => $sub_areas];
+        $datos = ['usuario' => $usuario, 'departamentos' => $departamentos, 'roles' => $roles, 'acceso' => $acceso, 'areas' => $areas, 'sub_areas' => $sub_areas, 'validar_accion' => $validar_accion];
 
         return view('usuarios.edit')->with($datos);
     }
@@ -148,6 +156,33 @@ class UsuariosController extends Controller
         $usuario = User::findOrFail($id);
         $usuario->fill($request->all());
         $usuario->save();
+
+        Acceso::where('user_id',$usuario->id)->delete();
+
+        $validate = array_key_exists('depar', $request->all());
+
+        if($validate)
+        {
+            foreach ($request->depar as  $row) 
+            {
+                $acceso = new Acceso;
+
+                $acceso->user_id = $usuario->id;
+                $area = implode($request->input('area_'.$row), ',');
+                $sub_area = "";
+                foreach ($request->input('area_'.$row) as $val) 
+                {
+                    $sub_area .= implode($request->input('sub_area_'.$val), ',').",";
+                }
+
+                $sub_area = substr($sub_area, 0, strlen($sub_area) -1);
+                $acceso->departamento_id = $row;
+                $acceso->area_id = $area;
+                $acceso->sub_area_id = $sub_area;
+                $acceso->save();   
+            }
+        }        
+
         Session::flash('flash_create', 'Usuario Modificado con éxito');
         return redirect()->route('usuario.index');
     }

@@ -198,6 +198,7 @@
     <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/highcharts.js')}}"></script>
+    
     <script type="text/javascript">
       $(document).ready(function(){
         $('.table').dataTable({

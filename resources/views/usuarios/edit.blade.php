@@ -12,10 +12,34 @@
 	<script>
 		$(function(){
 
-			
 			var form = $("#form_usuario")
+
+				form.find('.departamento').each(function(e){
+					if($(this).is(':checked'))
+					{
+						let depar = $(this).val()
+						let cantidad = $(`#section_area${depar}`).find('.col-md-2').size()
+						if(cantidad > 0)
+						{
+							$(`#section_area${depar}`).show('slow/400/fast', function(e){
+								$(this).find('.area').each(function(e){
+									if($(this).is(':checked'))
+									{
+										let area = $(this).val()
+										let cantidad_sub = $(`#section_sub_area${area}`).find('.col-md-2').size()
+										if(cantidad_sub > 0)
+										{
+											$(`#section_sub_area${area}`).show('slow/400/fast')
+										}
+									}	
+								});
+							})
+						}
+					}
+				});
+
 			
-			$(form).find('.departamento').click(function(e) {
+				$(form).find('.departamento').click(function(e) {
 				
 				let depar = e.target.value
 				

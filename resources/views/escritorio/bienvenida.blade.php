@@ -2,7 +2,7 @@
 
 
 @section('content')
-   <h2>BASE PARA PROYECTO LARAVEL - PROJECT4DESIGN</h2>
+   <h2>SISTEMA</h2>
 @endsection
 
 

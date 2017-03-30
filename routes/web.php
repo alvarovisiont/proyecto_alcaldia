@@ -25,7 +25,8 @@ Route::post('/login', 'LoginController@auth')->name('login_autenticar');
 //****************************************************************************************************
 
 // ========================== USUARIOS ========================================
-	
+Route::get('perfil','UsuariosController@perfil')->name('perfil');
+Route::patch('users/update_perfil','UsuariosController@update_perfil')->name('update_perfil');
 Route::resource('usuario', 'UsuariosController');
 
 //*****************************************************************************

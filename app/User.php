@@ -35,10 +35,16 @@ class User extends Authenticatable
 
     public function departamentos()
     {
-        return $this->join('departamentos', 'users.departamento_id', '=', 'departamentos.id_departamento')
-                    ->select('departamentos.nombre', 'departamentos.id_departamento')
-                    ->where('users.id', '=', Auth::user()->id)
-                    ->get();
+        return $this->hasOne('App\Departamentos','id_departamento');
+    }
+
+    public function roles()
+    {
+        return $this->hasOne('App\Roles','id_rol');
+    }
+
+    public function accesos(){
+    	return $this->hasMany('App\Acceso','user_id');
     }
 
 

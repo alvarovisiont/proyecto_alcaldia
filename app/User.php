@@ -43,5 +43,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Roles','id_rol');
     }
 
+    public function accesos(){
+    	return $this->hasMany('App\Acceso','user_id');
+    }
+
 
 }

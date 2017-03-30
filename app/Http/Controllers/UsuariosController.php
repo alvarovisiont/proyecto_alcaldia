@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Departamentos;
@@ -15,6 +16,39 @@ use Session;
 
 class UsuariosController extends Controller
 {
+		public function perfil(){
+			$perfil = User::findOrFail(Auth::user()->id);
+    	return view('usuarios.perfil', ['perfil' => $perfil]);
+		}
+
+		public function update_perfil(Request $request){
+      
+      $user = User::find(Auth::user()->id);
+
+      $user = $user->fill($request->all());
+
+      if($request->input('checkbox') == "Yes")
+	    	{
+	    		$pass = bcrypt($request->input('password_new'));
+	    		$perfil->password = $pass;
+	    	}
+
+      if($user->update()){
+        return redirect()->route('perfil')->with([
+	              'flash_message' => 'Cambios guardados correctamente.',
+	              'flash_class' => 'alert-success'
+              ]);
+      }else{
+        return redirect()->route('perfil')->with([
+	        			'flash_important' => true,
+	              'flash_message' => 'Ha ocurido u error.',
+	              'flash_class' => 'alert-danger'
+              ]);
+      }
+		}
+
+
+
     /**
      * Display a listing of the resource.
      *

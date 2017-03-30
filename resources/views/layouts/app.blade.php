@@ -27,7 +27,6 @@
       font-weight: 600;
       font-size: 17px;
     }
-
     .perfil{
       position: relative;
       background: #fff;
@@ -35,7 +34,6 @@
       padding: 20px;
       margin: 10px 25px;
     }
-
     .separador{ 
       border: 0.3px solid #dd4b39; 
       border-radius: 200px /8px; 
@@ -89,9 +87,12 @@
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
+                  	<div class="pull-left">
+                  		<a href="{{ route('perfil') }}" class="btn btn-flat btn-default"><i class="fa fa-user" aria-hidden="true"></i> Perfil</a>
+                  	</div>
                     
                     <div class="pull-right">
-                      <a href="{{ url('/logout')}}" class="btn btn-default btn-flat">Cerrar</a>
+                      <a href="{{ url('/logout')}}" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar</a>
                     </div>
                   </li>
                 </ul>
@@ -117,7 +118,6 @@
             </li>
             
             @php
-
               if(isset($menu))
               {
                 echo $menu;

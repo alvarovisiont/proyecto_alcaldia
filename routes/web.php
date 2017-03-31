@@ -28,6 +28,8 @@ Route::post('/login', 'LoginController@auth')->name('login_autenticar');
 Route::get('perfil','UsuariosController@perfil')->name('perfil');
 Route::patch('users/update_perfil','UsuariosController@update_perfil')->name('update_perfil');
 Route::resource('usuario', 'UsuariosController');
+//
+Route::post('usuario','UsuariosController@store_simple')->name('store_simple');
 
 //*****************************************************************************
 
@@ -54,5 +56,7 @@ Route::resource('sub_area', 'SubAreaController');
 $sub_area = Sub_area::all();
 
 foreach ($sub_area as $sub) {
- 	Route::get($sub->nombre)->name($sub->ruta);
+	$x = explode('.',$sub->ruta);
+ 	Route::get($sub->nombre,$x[0].'Controller@'.$x[1])->name($sub->ruta);
+
 }

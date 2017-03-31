@@ -35,12 +35,12 @@ class User extends Authenticatable
 
     public function departamentos()
     {
-        return $this->hasOne('App\Departamentos','id_departamento');
+        return $this->hasOne('App\Departamentos','id_departamento','departamento_id');
     }
 
     public function roles()
     {
-        return $this->hasOne('App\Roles','id_rol');
+        return $this->hasOne('App\Roles','id_rol','rol_id');
     }
 
     public function accesos(){

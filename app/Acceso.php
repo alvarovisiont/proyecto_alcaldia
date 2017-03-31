@@ -51,7 +51,7 @@ class Acceso extends Model
                                 ['departamento_id', '=', $usuario_p->departamento_id]
                                 ])->select('nombre')->firstOrFail();
 
-                            $sub_area = Sub_area::where('area_id','=' ,$areas)->select('nombre','ruta')->get();
+                            $sub_area = Sub_area::where('area_id','=' ,$areas)->select('nombre','ruta','descripcion')->get();
                             $menu.='
                             <li>
                               <a href="#">
@@ -63,7 +63,7 @@ class Acceso extends Model
                                 foreach ($sub_area as $sub_menu) 
                                 {
                                     $menu.='
-                                        <li><a href="'.route($sub_menu->ruta).'"><i class="fa fa-minus"></i>'.$sub_menu->nombre.'</a></li>';
+                                        <li><a href="'.route($sub_menu->ruta).'" title="'.$sub_menu->descripcion.'"><i class="fa fa-minus"></i>'.$sub_menu->nombre.'</a></li>';
                                 }
                                     $menu.='
                                       </ul>

@@ -16,37 +16,39 @@ use Session;
 
 class UsuariosController extends Controller
 {
+		//Mostrar el perfil del usuario en sesion
 		public function perfil()
-        {
+    {
 			$perfil = User::findOrFail(Auth::user()->id);
-    	    return view('usuarios.perfil', ['perfil' => $perfil]);
+			
+    	return view('usuarios.perfil', ['perfil' => $perfil]);
 		}
 
+		//Actualizar perfil del usuario en sesion
 		public function update_perfil(Request $request)
-        {
-      
-            $user = User::find(Auth::user()->id);
+    {
+  
+      $user = User::find(Auth::user()->id);
 
-            $user = $user->fill($request->all());
+      $user = $user->fill($request->all());
 
-            if($request->input('checkbox') == "Yes")
-    	    {
-        		$pass = bcrypt($request->input('password_new'));
-        		$perfil->password = $pass;
-    	    }
+      if($request->input('checkbox') == "Yes"){
+    		$pass = bcrypt($request->input('password_new'));
+    		$perfil->password = $pass;
+	    }
 
-              if($user->update()){
-                return redirect()->route('perfil')->with([
-        	              'flash_message' => 'Cambios guardados correctamente.',
-        	              'flash_class' => 'alert-success'
-                      ]);
-              }else{
-                return redirect()->route('perfil')->with([
-        	        			'flash_important' => true,
-        	              'flash_message' => 'Ha ocurido u error.',
-        	              'flash_class' => 'alert-danger'
-                      ]);
-              }
+      if($user->update()){
+        return redirect()->route('perfil')->with([
+          'flash_message' => 'Cambios guardados correctamente.',
+          'flash_class' => 'alert-success'
+        ]);
+    	}else{
+        return redirect()->route('perfil')->with([
+    				'flash_important' => true,
+            'flash_message' => 'Ha ocurido u error.',
+            'flash_class' => 'alert-danger'
+        ]);
+    	}
 		}
 
 
@@ -233,5 +235,36 @@ class UsuariosController extends Controller
     {
         //
         User::destroy($id);
+    }
+
+
+    //Vista de usuarios por departamento especifico
+    public function index_simple(){
+
+    	$departamento = Auth::user()->departamentos->nombre;
+    	$usuarios = User::all()->where('departamento_id',Auth::user()->departamento_id);
+
+    	return view('usuarios.index_simple',['departamento'=>$departamento,'usuarios'=>$usuarios]);
+    }
+
+    public function create_simple(){
+    	$user = new User;
+    	$departamento = Auth::user()->departamentos->nombre;
+    	$roles = Roles::all();
+
+    	return view('usuarios.create_simple',['usuario'=>$user,'departamento'=>$departamento,'url'=>'store_simple','roles'=>$roles,'edit'=>false]);
+    }
+
+    public function store_simple(Request $request){
+  		$usuario = new User;
+      $usuario->fill($request->all());
+      $usuario->password = bcrypt($request->password);
+      $usuario->departamento_id = Auth::user()->departamento_id;
+
+      if($usuario->save()){
+      	return redirect()->route('usuarios.index_simple')->with(['flash_message'=>'Usuario creado con exito.','flash_class'=>'alert-success']);
+      }else{
+      	return redirect('usuarios.index_simple')->with(['flash_message'=>'Ha ocurrido un error.','flash_class'=>'alert-danger']);
+      }
     }
 }

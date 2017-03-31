@@ -234,4 +234,7 @@ class UsuariosController extends Controller
         //
         User::destroy($id);
     }
+
+
+    
 }

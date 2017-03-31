@@ -51,8 +51,8 @@ Route::resource('sub_area', 'SubAreaController');
 
 //**********************************************************************
 
-/*$sub_area = Sub_area::all();
+$sub_area = Sub_area::all();
 
 foreach ($sub_area as $sub) {
  	Route::get($sub->nombre)->name($sub->ruta);
-}*/
+}

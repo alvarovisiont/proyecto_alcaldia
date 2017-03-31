@@ -35,6 +35,7 @@ class LoginController extends Controller
         $this->validate($request, ['usuario' => 'required' , 'password' => 'required']);
         if(Auth::attempt( $request->only(['usuario', 'password' ]) ) )
         {
+            
             return redirect()->route('escritorio');
         }
         else

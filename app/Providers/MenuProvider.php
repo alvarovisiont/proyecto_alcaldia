@@ -16,10 +16,10 @@ class MenuProvider extends ServiceProvider
     public function boot()
     {
         //
-        view()->composer('layouts.app', function($view){
+        /*view()->composer('layouts.app', function($view){
             $menu = Acceso::menu();
             $view->with(['menu' => $menu]);
-        });
+        });*/
     }
 
     /**

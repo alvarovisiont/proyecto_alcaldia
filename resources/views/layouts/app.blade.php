@@ -117,14 +117,7 @@
             </li>
             
             @php
-              if(isset($menu))
-              {
-                echo $menu;
-              }
-              else
-              {
-                echo '<span style="background-color: white;">No se realizo el menú</span>';
-              }
+              echo  session('menu');
             @endphp
 
             <li class="treeview">
@@ -138,6 +131,8 @@
                 <li><a href="{{ route('departamentos.index') }}"><i class="fa fa-circle-o"></i> Departamentos</a></li>
                 <li><a href="{{ route('areas.index') }}"><i class="fa fa-circle-o"></i> Areas</a></li>
                 <li><a href="{{ route('sub_area.index') }}"><i class="fa fa-circle-o"></i> Sub-areas</a></li>
+                <li><a href="{{ route('usuario.create') }}"><i class="fa fa-circle-o"></i> Crear Usuarios</a></li>
+                <li><a href="{{ route('usuario.index') }}"><i class="fa fa-circle-o"></i> Administrar Usuarios</a></li>
               </ul>
             </li>                        
           </ul>

@@ -81,7 +81,7 @@
 				<button type="submit" class="btn btn-success btn-block">Guardar&nbsp;&nbsp;<i class="fa fa-save"></i></button>
 			</div>	
 			<div class="col-md-offset-3 col-md-4">
-				<a href="{{route('usuarios.index_simple')}}" class="btn btn-link">Volver al listado de usuarios&nbsp;&nbsp;</a>
+				<a href="{{route('usuarios_simples.index')}}" class="btn btn-link">Volver al listado de usuarios&nbsp;&nbsp;</a>
 			</div>
 		</div>
 	</div>

@@ -192,7 +192,16 @@ class UsuariosController extends Controller
     {
         //
         $usuario = User::findOrFail($id);
-        $usuario->fill($request->all());
+
+        $usuario->nac = $request->nac;
+        $usuario->password = bcrypt($request->password);
+        $usuario->nombres = $request->nombres;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->cedula = $request->cedula;
+        $usuario->telefono = $request->telefono;
+        $usuario->rol_id = $request->rol_id;
+        $usuario->departamento_id = $request->departamento_id;
+
         $usuario->save();
 
         Acceso::where('user_id',$usuario->id)->delete();
@@ -220,6 +229,10 @@ class UsuariosController extends Controller
                 $acceso->save();   
             }
         }        
+        
+        $request->session()->forget('menu');
+
+        session(['menu' => Acceso::menu()]);
 
         Session::flash('flash_create', 'Usuario Modificado con éxito');
         return redirect()->route('usuario.index');
@@ -235,37 +248,7 @@ class UsuariosController extends Controller
     {
         //
         User::destroy($id);
-    }
-
-
-    //Vista de usuarios por departamento especifico
-    public function index_simple(){
-
-    	$departamento = Auth::user()->departamentos->nombre;
-    	$usuarios = User::all()->where('departamento_id',Auth::user()->departamento_id);
-
-    	return view('usuarios.index_simple',['departamento'=>$departamento,'usuarios'=>$usuarios]);
-    }
-
-    public function create_simple(){
-    	$user = new User;
-    	$departamento = Auth::user()->departamentos->nombre;
-    	$roles = Roles::all();
-
-    	return view('usuarios.create_simple',['usuario'=>$user,'departamento'=>$departamento,'url'=>'store_simple','roles'=>$roles,'edit'=>false]);
-    }
-
-    public function store_simple(Request $request){
-  		$usuario = new User;
-      $usuario->fill($request->all());
-      $usuario->password = bcrypt($request->password);
-      $usuario->departamento_id = Auth::user()->departamento_id;
-
-      if($usuario->save()){
-      	return redirect()->route('usuarios.index_simple')->with(['flash_message'=>'Usuario creado con exito.','flash_class'=>'alert-success']);
-      }else{
-      	return redirect('usuarios.index_simple')->with(['flash_message'=>'Ha ocurrido un error.','flash_class'=>'alert-danger']);
-      }
+        Acceso::where('user_id',$id)->delete();
     }
 
 }

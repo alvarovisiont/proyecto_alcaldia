@@ -2,7 +2,7 @@
 @section('view_descrip')
 <h3 class="text-center">Usuarios - {{$departamento}}
 	<span class="pull-right">
-		<a href="{{ route('usuarios.create_simple') }}" class="btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo usuario</a>
+		<a href="{{ route('usuarios_simples.create') }}" class="btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo usuario</a>
 	</span>
 </h3>
 @endsection
@@ -34,7 +34,7 @@
 					<td>{{$d->roles->nombre}}</td>
 					<td>
 						<a class="btn btn-primary btn-flat btn-sm" href=""><i class="fa fa-search"></i></a>
-						<a href="{{ url('usuario/'.$d->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
+						<a href="{{ url('usuarios_simples/'.$d->id.'/edit')}}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 					</td>
 				</tr>
 				@php $i++; @endphp

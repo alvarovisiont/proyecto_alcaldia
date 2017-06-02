@@ -50,8 +50,6 @@ class DatabaseSeeder extends Seeder
             App\Area::create([
                 'departamento_id' => $i + 1,
                 'nombre' => $area[$i],
-                'ruta' => "#",
-                'fa_class' => $fa_class_area[$i],
             ]);
         }
 
@@ -66,10 +64,10 @@ class DatabaseSeeder extends Seeder
 
         for($i = 0; $i < 1; $i++) {
             App\Acceso::create([
-                'area_id' => $i + 1,
+                'user_id' => $i +1,
                 'departamento_id' => 1,
+                'area_id' => $i + 1,
                 'sub_area_id' => $i +1,
-                'user_id' => $i +1
             ]);
         }
 
@@ -82,7 +80,6 @@ class DatabaseSeeder extends Seeder
                 'telefono' => '04124362753',
                 'rol_id' => 1,
                 'departamento_id' => 1,
-                'acceso_id' => 1,
                 'usuario' => 'fhernandez',
                 'password' => bcrypt('secret')
             ]);

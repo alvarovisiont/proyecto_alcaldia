@@ -38,7 +38,8 @@ class LoginController extends Controller
         $this->validate($request, ['usuario' => 'required' , 'password' => 'required']);
         if(Auth::attempt( $request->only(['usuario', 'password' ]) ) )
         {
-            
+            session(['menu' => Acceso::menu()]);
+
             return redirect()->route('escritorio');
         }
         else
@@ -47,9 +48,10 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->flush();
         return redirect()->route('login_entrar');
     }
 }

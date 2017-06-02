@@ -43,8 +43,8 @@
 					<td>{{$row->nombres}}</td>
 					<td>{{$row->apellidos}}</td>
 					<td>{{$row->telefono}}</td>
-					<td>{{$row->rol_id}}</td>
-					<td>{{$row->departamento_id}}</td>
+					<td>{{$row->roles->nombre}}</td>
+					<td>{{$row->departamentos->nombre}}</td>
 					<td>
 						<a href="{{ url('usuario/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 						<button type="button" class="btn btn-danger btn-sm eliminar" title="Eliminar" data-eliminar = "{{$row->id}}"><i class="fa fa-trash"></i></button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Acceso;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,7 @@ class LoginController extends Controller
         $this->validate($request, ['usuario' => 'requerid' , 'password' => 'requerid']);
         if(Auth::attempt( $request->only(['username', 'password' ]) ) )
         {
+
             return redirect()->intended('escritorio');
         }
         else

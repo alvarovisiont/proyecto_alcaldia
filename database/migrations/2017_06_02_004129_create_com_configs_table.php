@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Acceso extends Migration
+class CreateComConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class Acceso extends Migration
      */
     public function up()
     {
-        Schema::create('acceso', function (Blueprint $table) {
-            $table->increments('id_acceso');
-            $table->integer('user_id');
-            $table->integer('departamento_id');
-            $table->string('area_id');
-            $table->string('sub_area_id');
+        Schema::create('com_configs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('ano',255);
+            $table->string('presidente',255);
+            $table->string('coordinador',255);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class Acceso extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acceso');
+        Schema::dropIfExists('com_configs');
     }
 }

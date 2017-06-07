@@ -56,6 +56,7 @@ Route::resource('sub_area', 'SubAreaController');
 // ====================== COMPRAS ====================================
 
 	Route::resource('com_configuracion', 'Compras\\ConfigurarController');
+	Route::resource('com_proveedores', 'Compras\\ProveedoresController');
 
 //*********************************************************************
 

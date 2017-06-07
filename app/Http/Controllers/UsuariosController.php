@@ -198,6 +198,7 @@ class UsuariosController extends Controller
         $usuario->nombres = $request->nombres;
         $usuario->apellidos = $request->apellidos;
         $usuario->cedula = $request->cedula;
+        $usuario->usuario = $request->usuario;
         $usuario->telefono = $request->telefono;
         $usuario->rol_id = $request->rol_id;
         $usuario->departamento_id = $request->departamento_id;

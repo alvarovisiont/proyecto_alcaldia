@@ -46,7 +46,7 @@
 					<td>{{$row->roles->nombre}}</td>
 					<td>{{$row->departamentos->nombre}}</td>
 					<td>
-						<a href="{{ url('usuario/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
+						<a href="{{ url('usuario/'.$row->id.'/edit') }}" class="btn btn-success btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 						<button type="button" class="btn btn-danger btn-sm eliminar" title="Eliminar" data-eliminar = "{{$row->id}}"><i class="fa fa-trash"></i></button>
 					</td>
 				</tr>

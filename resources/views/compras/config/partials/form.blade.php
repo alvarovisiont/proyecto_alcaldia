@@ -26,5 +26,8 @@
 		<div class="col-md-4 col-md-offset-4">
 			<button type="submit" class="btn btn-block btn-danger">Guardar&nbsp;<i class="fa fa-send"></i></button>
 		</div>
+		<div class="col-md-3 col-md-offset-1">
+			<a class="btn btn-link" href="{{route('com_configuracion.index')}}">Volver a la vista de la configuración</a>
+		</div>
 	</div>
 </form>

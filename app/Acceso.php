@@ -63,13 +63,14 @@ class Acceso extends Model
                                 foreach ($sub_area as $sub_menu) 
                                 {
                                     $menu.='
-                                        <li><a href="'.route($sub_menu->ruta).'" title="'.$sub_menu->descripcion.'"><i class="fa fa-minus"></i>'.$sub_menu->nombre.'</a></li>';
+                                        <li>
+                                            <a href="'.route($sub_menu->ruta).'" title="'.$sub_menu->descripcion.'"><i class="fa fa-minus"></i>'.$sub_menu->nombre.'
+                                            </a>
+                                        </li>';
                                 }
                                     $menu.='
-                                      </ul>
-                                    </li>';
-                                
-                            
+                                </ul>
+                            </li>';   
                         }
                         $menu.='
                         </ul>

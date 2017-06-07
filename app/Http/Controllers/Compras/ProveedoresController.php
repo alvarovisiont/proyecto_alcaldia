@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Compras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Com_config;
+use App\Com_provee;
 
-class ConfigurarController extends Controller
+use Session;
+
+
+class ProveedoresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +19,8 @@ class ConfigurarController extends Controller
     public function index()
     {
         //
-        $config = Com_config::all();
-        return view('compras.config.index')->with('config',$config);
+        $proveedores = Com_provee::all();
+        return view('compras.proveedores.index')->with('proveedores', $proveedores);
 
     }
 
@@ -29,10 +32,10 @@ class ConfigurarController extends Controller
     public function create()
     {
         //
-        $config = new Com_config;
-        $ruta = 'com_configuracion';
-        $datos = ['config' => $config, 'ruta' => $ruta, 'edit' => false];
-        return view('compras.config.create')->with($datos);
+        $proveedores = new Com_provee;
+        $ruta = 'com_proveedores';
+        $datos = ['proveedores' => $proveedores, 'ruta' => $ruta, 'edit' => false];
+        return view('compras.proveedores.create')->with($datos);
     }
 
     /**
@@ -44,8 +47,9 @@ class ConfigurarController extends Controller
     public function store(Request $request)
     {
         //
-        Com_config::create($request->all());
-        return redirect('com_configuracion');
+        Com_provee::create($request->all());
+        Session::flash('flash_create', 'Proveedor creado con éxito');
+        return redirect('com_proveedores');
     }
 
     /**
@@ -68,10 +72,10 @@ class ConfigurarController extends Controller
     public function edit($id)
     {
         //
-        $config =  Com_config::findOrFail($id);
-        $ruta = 'com_configuracion/'.$id;
-        $datos = ['config' => $config, 'ruta' => $ruta, 'edit' => true];
-        return view('compras.config.update')->with($datos);
+        $proveedores =  Com_provee::findOrFail($id);
+        $ruta = 'com_proveedores/'.$id;
+        $datos = ['proveedores' => $proveedores, 'ruta' => $ruta, 'edit' => true];
+        return view('compras.proveedores.update')->with($datos);
     }
 
     /**
@@ -84,11 +88,11 @@ class ConfigurarController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $config = Com_config::findOrFail($id);
-        $config->fill($request->all());
-        $config->update();
-
-        return redirect('/com_configuracion');
+        $provee = Com_provee::findOrFail($id);
+        $provee->fill($request->all());
+        $provee->update();
+        Session::flash('flash_create', 'Proveedor modificado con éxito');
+        return redirect('/com_proveedores');
     }
 
     /**
@@ -100,5 +104,6 @@ class ConfigurarController extends Controller
     public function destroy($id)
     {
         //
+        Com_provee::where('id',$id)->delete();
     }
 }

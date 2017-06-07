@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('view_descrip')
-	<h3 class="text-center">Crear Configuración</h3>
+	<h3 class="text-center">Registrar Proveedor</h3>
 @endsection
 
 @section('content')
-	@include('compras.partials.form')
+	@include('compras.proveedores.partials.form')
 @endsection
 
 @section('script')

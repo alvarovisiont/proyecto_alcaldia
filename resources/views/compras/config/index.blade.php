@@ -42,4 +42,4 @@
 @section('script')
 	<script>
 	</script>
-<@endsection>
+@endsection

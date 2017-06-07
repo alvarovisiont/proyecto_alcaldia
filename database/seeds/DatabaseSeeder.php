@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         //============================= Arrays de los faker =================================//
             //AREAS=========================
                 
-                $area = ['Usuarios'];
+                $area = ['Departamentos'];
                 
                 $fa_class_area = ['fa fa-users'];
 
@@ -40,8 +40,8 @@ class DatabaseSeeder extends Seeder
 
         for($i = 0; $i < 1; $i++) {
             App\Departamentos::create([
-                'nombre' => 'Tesoreria',
-                'descripcion' => '/programacion',
+                'nombre' => 'Compras',
+                'descripcion' => 'departamento de compras',
                 'fa_class' => 'fa fa-home'
             ]);
         }
@@ -80,8 +80,8 @@ class DatabaseSeeder extends Seeder
                 'telefono' => '04124362753',
                 'rol_id' => 1,
                 'departamento_id' => 1,
-                'usuario' => 'fhernandez',
-                'password' => bcrypt('secret')
+                'usuario' => 'admin',
+                'password' => bcrypt('admin123')
             ]);
         }
 

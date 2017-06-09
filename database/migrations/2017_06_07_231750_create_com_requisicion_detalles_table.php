@@ -16,12 +16,12 @@ class CreateComRequisicionDetallesTable extends Migration
         Schema::create('com_requisicion_detalles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('com_requisicion_id')->unsigned();
-            $tabla->decimal('cantidad',10,2);
-            $tabla->string('unidad',255);
+            $table->decimal('cantidad',10,2);
+            $table->string('unidad',255);
             $table->integer('com_insumo_id')->unsigned();
             $table->string('des_insumo',255);
             $table->integer('ano');
-            $table->foreign('com_requisicion_id')->references('id')->on('com_requisicion');
+            $table->foreign('com_requisicion_id')->references('id')->on('com_requisiciones');
             $table->foreign('com_insumo_id')->references('id')->on('com_insumos');
             $table->timestamps();
         });

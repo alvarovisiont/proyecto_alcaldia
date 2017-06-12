@@ -8,7 +8,7 @@
 		<!--Grupo USUARIO CONTRASEÑA-->
 		<label for="usuario" class="control-label col-md-2">Codigo</label>
 		<div class="col-md-4">
-			<input type="text" id="codigo" name="codigo" required="" class="form-control" value="{{$unidades->codigo}}">
+			<input type="text" id="codigo" name="codigo" required="" class="form-control" value="{{$edit?'00'.$unidades->codigo:$codigo}}" readonly>
 		</div>
 		<label for="nombres" class="control-label col-md-2">Descripción</label>
 		<div class="col-md-4">

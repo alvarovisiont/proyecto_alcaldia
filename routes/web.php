@@ -63,6 +63,14 @@ Route::resource('sub_area', 'SubAreaController');
 
 //*********************************************************************
 
+// ====================== INSUMOS ====================================
+
+	Route::resource('/insumos','Compras\\InsumosController');
+
+//*********************************************************************
+
+
+
 $sub_area = Sub_area::all();
 
 foreach ($sub_area as $sub) {

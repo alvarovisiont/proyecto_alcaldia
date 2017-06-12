@@ -15,11 +15,11 @@ class ComInsumos extends Migration
     {
         Schema::create('com_insumos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('codigo')->unsigned();
+            $table->integer('codigo');
             $table->string('descripcion')->nullable();
             $table->decimal('cantidad', 11, 2);
-            $table->string('unidad');
-            $table->string('des_unidad');
+            $table->integer('id_unidad')->unsigned();
+            $table->foreign('id_unidad')->references('id')->on('com_unidades')->onDelete('cascade');
             $table->timestamps();
         });
     }

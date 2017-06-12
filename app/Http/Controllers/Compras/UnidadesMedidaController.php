@@ -29,9 +29,13 @@ class UnidadesMedidaController extends Controller
     public function create()
     {
         //
+
         $unidades = new Com_unidades;
+        $codigo_unidad = Com_unidades::all();
+        $codigo2 = $codigo_unidad->last();
+        $codigo = $codigo2->codigo + 1;
         $ruta = 'com_unidades';
-        $datos = ['unidades' => $unidades, 'ruta' => $ruta, 'edit' => false];
+        $datos = ['unidades' => $unidades, 'ruta' => $ruta, 'edit' => false, 'codigo' => $codigo];
         return view('compras.unidades.create')->with($datos);
     }
 
@@ -70,6 +74,7 @@ class UnidadesMedidaController extends Controller
     {
         //
         $unidades =  Com_unidades::findOrFail($id);
+
         $ruta = 'com_unidades/'.$id;
         $datos = ['unidades' => $unidades, 'ruta' => $ruta, 'edit' => true];
         return view('compras.unidades.update')->with($datos);

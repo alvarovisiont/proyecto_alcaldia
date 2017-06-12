@@ -8,4 +8,9 @@ class Com_unidades extends Model
 {
     //
     protected $fillable = ['codigo', 'descripcion'];
+
+    public function insumos()
+    {
+    	return $this->belongsTo('App\com_insumos');
+    }
 }

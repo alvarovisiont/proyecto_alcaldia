@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Com_insumos extends Model
 {
-    protected $fillable = ['codigo'.'descripcion','cantidad','unidad','des_unidad'];
+	public $table = 'com_insumos';
+    protected $fillable = ['codigo','descripcion','cantidad','id_unidad'];
+
+    function unidades()
+    {
+    	return $this->hasOne('App\Com_unidades','id');
+    }
 }

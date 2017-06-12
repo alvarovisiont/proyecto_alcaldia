@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2017 a las 01:31:49
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 12-06-2017 a las 19:00:47
+-- Versión del servidor: 10.1.10-MariaDB
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +41,7 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`id_acceso`, `user_id`, `departamento_id`, `area_id`, `sub_area_id`, `created_at`, `updated_at`) VALUES
-(4, 1, 1, '1,2,3,4,5', '3,4,5,6,7,8,9,10,11', '2017-06-08 02:57:52', '2017-06-08 02:57:52');
+(5, 1, 1, '1,2,3,4,5,6', '3,4,5,6,7,8,9,10,11,12,13', '2017-06-12 19:23:56', '2017-06-12 19:23:56');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,8 @@ INSERT INTO `area` (`id_area`, `departamento_id`, `nombre`, `created_at`, `updat
 (2, 1, 'Proveedores', '2017-06-07 21:52:13', '2017-06-07 21:52:13'),
 (3, 1, 'Unidades', '2017-06-07 21:54:18', '2017-06-07 21:54:34'),
 (4, 1, 'Configuración', '2017-06-07 21:54:59', '2017-06-07 21:54:59'),
-(5, 1, 'Requisiciones', '2017-06-07 21:55:17', '2017-06-07 21:55:17');
+(5, 1, 'Requisiciones', '2017-06-07 21:55:17', '2017-06-07 21:55:17'),
+(6, 1, 'Insumos', '2017-06-12 19:21:58', '2017-06-12 19:21:58');
 
 -- --------------------------------------------------------
 
@@ -83,13 +84,6 @@ CREATE TABLE `com_configs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `com_configs`
---
-
-INSERT INTO `com_configs` (`id`, `ano`, `presidente`, `coordinador`, `created_at`, `updated_at`) VALUES
-(1, '2017', 'Alvaro Guedez', 'Susana Rodríguez', '2017-06-07 22:29:36', '2017-06-07 22:29:36');
-
 -- --------------------------------------------------------
 
 --
@@ -104,12 +98,28 @@ CREATE TABLE `com_departamentos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `com_departamentos`
+-- Estructura de tabla para la tabla `com_insumos`
 --
 
-INSERT INTO `com_departamentos` (`id`, `programatica`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, '11.01.00.51', 'Desarrollo Urbano', '2017-06-07 22:05:08', '2017-06-08 03:04:00');
+CREATE TABLE `com_insumos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `codigo` int(10) UNSIGNED NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cantidad` decimal(11,2) NOT NULL,
+  `id_unidad` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `com_insumos`
+--
+
+INSERT INTO `com_insumos` (`id`, `codigo`, `descripcion`, `cantidad`, `id_unidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Harina', '4.00', 1, '2017-06-12 20:00:15', '2017-06-12 20:00:15');
 
 -- --------------------------------------------------------
 
@@ -148,12 +158,23 @@ CREATE TABLE `com_requisiciones` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `com_requisiciones`
+-- Estructura de tabla para la tabla `com_requisicion_detalles`
 --
 
-INSERT INTO `com_requisiciones` (`id`, `codigo`, `descripcion`, `fecha`, `status`, `des_unidad`, `unidad`, `centro`, `ano`, `created_at`, `updated_at`) VALUES
-(1, '0003', 'Primera requisición', '2017-06-07', 'activo', 'Desarrollo Urbano', '11.01.00.51', 'centro de cagua', 2017, '2017-06-08 03:01:05', '2017-06-08 03:04:28');
+CREATE TABLE `com_requisicion_detalles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `com_requisicion_id` int(10) UNSIGNED NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
+  `unidad` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `com_insumo_id` int(10) UNSIGNED NOT NULL,
+  `des_insumo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ano` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -168,6 +189,14 @@ CREATE TABLE `com_unidades` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `com_unidades`
+--
+
+INSERT INTO `com_unidades` (`id`, `codigo`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, '1', 'SACOS', NULL, NULL),
+(2, '2', 'GALON', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,17 +237,19 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(31, '2012_03_20_183355_roles', 1),
-(32, '2013_03_20_180810_departamentos', 1),
-(33, '2014_03_19_184731_area', 1),
-(34, '2014_03_19_184732_sub_area', 1),
-(35, '2014_03_20_184120_acceso', 1),
-(36, '2017_06_02_004129_create_com_configs_table', 1),
-(37, '2017_06_07_004848_create_com_provees_table', 1),
-(38, '2017_06_07_143345_create_com_unidades_table', 1),
-(39, '2017_06_07_162130_create_com_departamentos_table', 1),
-(40, '2017_06_07_170752_create_com_requisiciones_table', 1),
-(41, '2018_03_20_174120_create_users_table', 1);
+(55, '2012_03_20_183355_roles', 1),
+(56, '2013_03_20_180810_departamentos', 1),
+(57, '2014_03_19_184731_area', 1),
+(58, '2014_03_19_184732_sub_area', 1),
+(59, '2014_03_20_184120_acceso', 1),
+(60, '2017_06_02_004129_create_com_configs_table', 1),
+(61, '2017_06_07_004848_create_com_provees_table', 1),
+(62, '2017_06_07_143345_create_com_unidades_table', 1),
+(63, '2017_06_07_162130_create_com_departamentos_table', 1),
+(64, '2017_06_07_170752_create_com_requisiciones_table', 1),
+(65, '2017_06_07_170753_com_insumos', 1),
+(66, '2017_06_07_231750_create_com_requisicion_detalles_table', 1),
+(67, '2018_03_20_174120_create_users_table', 1);
 
 -- --------------------------------------------------------
 
@@ -239,7 +270,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'Servicio tecnico', 'servicio', '2017-06-07 21:50:49', '2017-06-07 21:50:49');
+(1, 'Servicio tecnico', 'servicio', '2017-06-12 19:12:28', '2017-06-12 19:12:28');
 
 -- --------------------------------------------------------
 
@@ -270,7 +301,9 @@ INSERT INTO `sub_area` (`id_sub_area`, `area_id`, `nombre`, `descripcion`, `ruta
 (8, 3, 'Registrar Unidad', 'Area para registrar las nidades de compra', 'Compras\\UnidadesMedida.create', '2017-06-07 22:00:10', '2017-06-07 22:00:10'),
 (9, 4, 'configurar', 'area para grabar la configuración del sistema', 'Compras\\Configurar.index', '2017-06-07 22:02:27', '2017-06-07 22:02:27'),
 (10, 5, 'Ver requisiciones', 'ruta para ver las requisiciones del sistema', 'Compras\\Requisiciones.index', '2017-06-07 22:08:11', '2017-06-07 22:08:11'),
-(11, 5, 'Crear Requisición', 'vista para crear las requisiciones de compras', 'Compras\\Requisiciones.create', '2017-06-08 02:57:34', '2017-06-08 02:57:34');
+(11, 5, 'Crear Requisición', 'vista para crear las requisiciones de compras', 'Compras\\Requisiciones.create', '2017-06-08 02:57:34', '2017-06-08 02:57:34'),
+(12, 6, 'Ver insumos', 'Para ver todos los insumos registrados', 'Compras\\Insumos.index', '2017-06-12 19:22:54', '2017-06-12 19:22:54'),
+(13, 6, 'Registrar insumo', 'Registrar todos los insumos de compras', 'Compras\\Insumos.create', '2017-06-12 19:23:33', '2017-06-12 19:23:33');
 
 -- --------------------------------------------------------
 
@@ -299,7 +332,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `nac`, `cedula`, `usuario`, `telefono`, `password`, `rol_id`, `departamento_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'xeichmann', 'Mrs. Aiyana Miller DDS', 'V', '21202500', 'admin', '04124362753', '$2y$10$N7ZXKxL5mQFm6gPaaUhjRuGkwmoJtW8DWA2BRvZJen4NX1GuWZ7HS', 1, 1, NULL, '2017-06-07 21:50:50', '2017-06-08 02:57:52');
+(1, 'xeichmann', 'Mrs. Aiyana Miller DDS', 'V', '21202500', 'admin', '04124362753', '$2y$10$4fhQ7RnjVnII0Uw1tNa54.RLZ.GmD6lNQi4/c/FtSyb3KlS04Fyyq', 1, 1, 'WyMmoF1RiwzHJ4iDWvMwUk0bdirQreZziwwZrPlTyfAd5WmgL7zuQxQ2wiNP', '2017-06-07 21:50:50', '2017-06-12 19:23:56');
 
 --
 -- Índices para tablas volcadas
@@ -331,6 +364,13 @@ ALTER TABLE `com_departamentos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `com_insumos`
+--
+ALTER TABLE `com_insumos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `com_insumos_id_unidad_foreign` (`id_unidad`);
+
+--
 -- Indices de la tabla `com_provees`
 --
 ALTER TABLE `com_provees`
@@ -341,6 +381,14 @@ ALTER TABLE `com_provees`
 --
 ALTER TABLE `com_requisiciones`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `com_requisicion_detalles`
+--
+ALTER TABLE `com_requisicion_detalles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `com_requisicion_detalles_com_requisicion_id_foreign` (`com_requisicion_id`),
+  ADD KEY `com_requisicion_detalles_com_insumo_id_foreign` (`com_insumo_id`);
 
 --
 -- Indices de la tabla `com_unidades`
@@ -389,22 +437,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `com_configs`
 --
 ALTER TABLE `com_configs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `com_departamentos`
 --
 ALTER TABLE `com_departamentos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `com_insumos`
+--
+ALTER TABLE `com_insumos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `com_provees`
 --
@@ -414,12 +467,17 @@ ALTER TABLE `com_provees`
 -- AUTO_INCREMENT de la tabla `com_requisiciones`
 --
 ALTER TABLE `com_requisiciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `com_requisicion_detalles`
+--
+ALTER TABLE `com_requisicion_detalles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `com_unidades`
 --
 ALTER TABLE `com_unidades`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
@@ -429,7 +487,7 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -439,7 +497,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sub_area`
 --
 ALTER TABLE `sub_area`
-  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
@@ -454,6 +512,19 @@ ALTER TABLE `users`
 --
 ALTER TABLE `area`
   ADD CONSTRAINT `area_departamento_id_foreign` FOREIGN KEY (`departamento_id`) REFERENCES `departamentos` (`id_departamento`);
+
+--
+-- Filtros para la tabla `com_insumos`
+--
+ALTER TABLE `com_insumos`
+  ADD CONSTRAINT `com_insumos_id_unidad_foreign` FOREIGN KEY (`id_unidad`) REFERENCES `com_unidades` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `com_requisicion_detalles`
+--
+ALTER TABLE `com_requisicion_detalles`
+  ADD CONSTRAINT `com_requisicion_detalles_com_insumo_id_foreign` FOREIGN KEY (`com_insumo_id`) REFERENCES `com_insumos` (`id`),
+  ADD CONSTRAINT `com_requisicion_detalles_com_requisicion_id_foreign` FOREIGN KEY (`com_requisicion_id`) REFERENCES `com_requisiciones` (`id`);
 
 --
 -- Filtros para la tabla `sub_area`

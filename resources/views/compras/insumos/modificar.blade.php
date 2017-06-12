@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center"> Modificar Rol</h2>
+<h2 class="text-center"> Modificar Insumo</h2>
 <hr>
 
 @if(count($errors) > 0)
@@ -15,22 +15,37 @@
 			 </div>
 			 @endif
 
-<form action="{{url('roles/'.$rol->id_rol)}}" method="POST">
-{{csrf_field()}}
+<form action="{{url('insumos/'.$insumo->id)}}" method="POST">
 {{method_field('PUT')}}
-	<div class="form-group col-md-4 col-md-offset-4">
-		<label class="control-label">Nombre del rol</label>
-		<input type="text" name="nombre" class="form-control" value="{{$rol->nombre}}">
+{{csrf_field()}}
+	<div class="form-group col-md-2 col-md-offset-4">
+		<label class="control-label">Codigo</label>
+		<input type="text" name="codigo" class="form-control" value ="00{{$insumo->codigo}}" readonly>
 	</div>
+
 	<div class="form-group col-md-4 col-md-offset-4">
-		<label class="control-label">Descripcion del rol</label>
-		<input type="text" name="descripcion" class="form-control" value="{{$rol->descripcion}}">
+		<label class="control-label">Descripcion del insumo</label>
+		<input type="text" name="descripcion" class="form-control" value="{{$insumo->descripcion}}">
 	</div>
+
+	<div class="form-group col-md-4 col-md-offset-4">
+		<label class="control-label">Cantidad</label>
+		<input type="text" name="cantidad" class="form-control" value="{{$insumo->cantidad}}">
+	</div>
+
+	<div class="form-group col-md-4 col-md-offset-4">
+		<label class="control-label">Unidad</label>
+		<select name="id_unidad" class="form-control">
+			<option value="">Seleccione...</option>
+			@foreach($unidad as $u)
+			  <option value="{{$u->codigo}}" @if($u->codigo == $insumo->id_unidad) selected @endif>{{$u->descripcion}}</option>
+			@endforeach
+		</select>
+	</div>
+
 	
 		<div class="form-group col-md-12 col-md-offset-4">
-			<input type="submit"  value="Modificar" class="btn btn-flat btn-success">
-			<a href="{{route('roles.index')}}" class="btn btn-flat btn-default"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
- Volver</a>
+			<input type="submit" name="enviar" value="Modificar" class="btn btn-flat btn-success">
 		</div>
 </form>
 

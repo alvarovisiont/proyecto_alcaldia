@@ -1,48 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="row">
+	<div class="col-md-1">
+		<a href="{{url('insumos/'.$insumo->id.'/edit')}}" class="pull-left btn btn-flat btn-success" ><i class="fa fa-edit"></i> Editar</a>
+	</div>
+	<div class="col-md-1 col-md-offset-1">
+		<a href="" class="pull-left btn btn-flat btn-danger" data-target="#modal-delete-{{$insumo->id}}" data-toggle="modal"><i class="fa fa-trash"></i> Eliminar</a>
+	</div>
+</div>
 
-<a href="" class="pull-left btn btn-flat btn-danger" data-target="#modal-delete-{{$rol->id_rol}}" data-toggle="modal"><i class="fa fa-trash"></i> Eliminar</a>
-<h2 class="text-center"> Rol - {{$rol->nombre}}</h2>
+
+<h2 class="text-center"> Insumo - {{$insumo->descripcion}}</h2>
 
 <hr>
-
-<p><strong>Nombre del rol: </strong>{{$rol->nombre}}</p>
-<p><strong>Descripcion del rol: </strong>{{$rol->descripcion}}</p>
-<hr>
-<br>
-<br>
-<br>
-<h2 class="text-center">Usuarios con este rol</h2>
-<br>
-<table class="table table-bordered table-hover table-condensed tabla">
-	<thead>
-	  <tr>
-		<th>Cedula</th>
-		<th>Nombre</th>
-		<th>Apellido</th>
-		<th>Accion</th>
-	  </tr>
-	</thead>
-	<tbody>
-	@foreach($usuarios->user as $u)
-		<tr>
-			<td>{{$u->nac.'-'.$u->cedula}}</td>
-			<td>{{$u->nombres}}</td>
-			<td>{{$u->apellidos}}</td>
-			<td>
-				<a href="{{ url('usuario/'.$u->id)}}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
-			</td>
-		</tr>
-	@endforeach
-	</tbody>
-</table>
+<p><strong>Codigo: </strong>00{{$insumo->codigo}}</p>
+<p><strong>Unidad del insumo: </strong>{{$insumo->unidades->descripcion}}</p>
+<p><strong>Descripcion del insumo: </strong>{{$insumo->descripcion}}</p>
 
 
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$rol->id_rol}}">
+
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$insumo->id}}">
 
 <!-- Modal de eliminar usuario -->	
-<form method="POST" action="{{ url('roles/'.$rol->id_rol) }}">
+<form method="POST" action="{{ url('insumos/'.$insumo->id) }}">
 {{csrf_field()}}
 {{method_field('DELETE')}}
 <div class="modal-dialog">
@@ -51,10 +32,10 @@
 			<button type="button" class="close" data-dismiss="modal" arial-label="Close">
 				<span aria-hidden="true">x</span>
 			</button>
-			<h4 class="modal-title">Elminar Rol</h4>
+			<h4 class="modal-title">Elminar Insumo</h4>
 		</div>
 		<div class="modal-body">
-			<p>Confirme si desea eliminar el rol <strong>{{$rol->nombre}}</strong></p>
+			<p>Confirme si desea eliminar el insumo <strong>{{$insumo->descripcion}}</strong></p>
 			
 		</div>
 		<div class="modal-footer">

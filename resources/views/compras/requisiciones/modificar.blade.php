@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center"> Registrar Requisicion</h2>
+<h2 class="text-center"> Modificar Requisicion</h2>
 <hr>
 
 @if(count($errors) > 0)
@@ -35,8 +35,8 @@
 
 		<div class="form-group">
 		   <label class="control-label">Status</label>
-		   <input type="text"  name="status" class="form-control" required readonly value="Vigente" value="{{$requisicion->status}}">
-		</div>  
+		     <input type="text" name="status" value="{{$requisicion->status}}" class="form-control" readonly>
+		</div>   
      </div>
 
 <div class="col-md-6">

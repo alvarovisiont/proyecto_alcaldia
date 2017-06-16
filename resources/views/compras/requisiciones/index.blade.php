@@ -15,7 +15,7 @@
 				<th class="text-center">Descripcion</th>
 				<th class="text-center">Fecha</th>
 				<th class="text-center">Unidad</th>
-				<th class="text-center">Des_unidad</th>
+				<th class="text-center">Descripcion</th>
 				<th class="text-center">Año</th>
 				<th class="text-center">Accion</th>
 			</tr>
@@ -29,7 +29,7 @@
 					<td>{{$in->fecha}}</td>
 					<td>{{$in->status}}</td>
 					<td>{{$in->departamento->programatica}}</td>
-					<td>{{$in->departamento->descripcion}}</td>
+					<td>{{$in->descripcion}}</td>
 					<td>{{$in->ano}}</td>
 					<td>
 					  <a href="{{ url('com_requisicion/'.$in->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>

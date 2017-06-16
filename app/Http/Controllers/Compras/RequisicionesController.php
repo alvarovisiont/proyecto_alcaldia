@@ -19,7 +19,7 @@ class RequisicionesController extends Controller
     public function index()
     {
         //
-        $requision = Com_requisiciones::all();
+        $requision = Com_requisiciones::where('status','Vigente')->get();
         return view('compras.requisiciones.index')->with('requisicion', $requision);
 
     }
@@ -84,7 +84,9 @@ class RequisicionesController extends Controller
      */
     public function show($id)
     {
-        //
+        $requisicion = Com_requisiciones::findOrFail($id);
+
+        return view('compras.requisiciones.ver',['requisicion' => $requisicion]);
         
     }
 
@@ -112,23 +114,26 @@ class RequisicionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        //dd($request->all());
 
-        /*$requisicion = Com_requisiciones::findOrFail($id);
-        $datos = [
-            'codigo' => $request->codigo,
-            'descripcion' => $request->descripcion,
-            'fecha' => date('Y-m-d', strtotime($request->fecha)),
-            'status' => $request->status,
-            'des_unidad' => $request->des_unidad,
-            'unidad' => $request->unidad,
-            'centro' => $request->centro,
-            'ano' => $request->ano
-        ];
-        $requisicion->fill($datos);
-        $requisicion->update();
-        Session::flash('flash_create', 'Requisición modificada con éxito');
-        return redirect('/com_requisicion');*/
+        $requisicion = Com_requisiciones::findOrFail($id);
+        $requisicion->fill($request->all());
+        if($requisicion->update())
+        {
+            $with = [
+            'flash_message' => 'Se modifico la requisicion correctamente!',
+            'flash_class' => 'alert-success'];
+
+        }else{
+            $with = [
+            'flash_message' => 'Ha ocurrido un error.',
+            'flash_class' => 'alert-danger',
+            'alert-important' => true
+            ];
+        }
+        //dd($with);
+        return redirect('com_requisicion')->with($with);
+
     }
 
     /**
@@ -140,6 +145,24 @@ class RequisicionesController extends Controller
     public function destroy($id)
     {
         //
-        Com_requisiciones::where('id',$id)->delete();
+        $requisicion = Com_requisiciones::findOrFail($id);
+
+        $requisicion->status = 'Inactivo';
+
+        if($requisicion->update())
+        {
+            $with = [
+            'flash_message' => 'Se elimino la requisicion correctamente!',
+            'flash_class' => 'alert-danger'];
+
+        }else{
+            $with = [
+            'flash_message' => 'Ha ocurrido un error.',
+            'flash_class' => 'alert-danger',
+            'alert-important' => true
+            ];
+        }
+        //dd($with);
+        return redirect('com_requisicion')->with($with);
     }
 }

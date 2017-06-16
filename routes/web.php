@@ -69,6 +69,12 @@ Route::resource('sub_area', 'SubAreaController');
 
 //*********************************************************************
 
+// ====================== Requisicion Detalles ====================================
+
+	Route::resource('/req_detalle','Compras\\RequisicionDetalleController');
+
+//****
+
 
 
 $sub_area = Sub_area::all();

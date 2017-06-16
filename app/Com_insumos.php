@@ -13,4 +13,9 @@ class Com_insumos extends Model
     {
     	return $this->hasOne('App\Com_unidades','id');
     }
+
+    public function requisicion()
+    {
+        return $this->hasMany('App\Com_requisicionDetalle','com_insumo_id');
+    }
 }

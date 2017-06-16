@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Com_requisiciones;
 use App\Com_departamentos;
 use App\Com_config;
+use App\Com_requisicionDetalle;
+use App\Com_insumos;
 use Session;
 
 class RequisicionesController extends Controller
@@ -20,7 +22,9 @@ class RequisicionesController extends Controller
     {
         //
         $requision = Com_requisiciones::where('status','Vigente')->get();
-        return view('compras.requisiciones.index')->with('requisicion', $requision);
+         $requisicion = Com_requisicionDetalle::all();
+        $insumos= Com_insumos::all();
+        return view('compras.requisiciones.index',['requisicion'=> $requision,'insumos'=>$insumos,'requisiciones' => $requisicion]);
 
     }
 

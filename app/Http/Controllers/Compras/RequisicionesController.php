@@ -20,7 +20,7 @@ class RequisicionesController extends Controller
     {
         //
         $requision = Com_requisiciones::all();
-        return view('compras.requisiciones.index')->with('requision', $requision);
+        return view('compras.requisiciones.index')->with('requisicion', $requision);
 
     }
 
@@ -32,12 +32,13 @@ class RequisicionesController extends Controller
     public function create()
     {
         //
-        $requisicion = new Com_requisiciones;
+        $requisicion = Com_requisiciones::all();
         $departamentos = Com_departamentos::all();
-        $año = Com_config::select('ano')->first();
-        $ruta = 'com_requisicion';
-        $datos = ['año' => $año,'requisicion' => $requisicion, 'departamentos' => $departamentos, 'ruta' => $ruta, 'edit' => false];
-        return view('compras.requisiciones.create')->with($datos);
+        $año = Date("Y");
+        $requisicion_codigo = $requisicion->last();
+        $codigo = $requisicion_codigo->codigo + 1;
+        //dd($codigo);
+        return view('compras.requisiciones.create',['departamentos'=>$departamentos,'ano' => $año,'codigo' => $codigo]);
     }
 
     /**
@@ -48,22 +49,32 @@ class RequisicionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
 
-        Com_requisiciones::create([
-            'codigo' => $request->codigo,
-            'descripcion' => $request->descripcion,
-            'fecha' => date('Y-m-d', strtotime($request->fecha)),
-            'status' => $request->status,
-            'des_unidad' => $request->des_unidad,
-            'unidad' => $request->unidad,
-            'centro' => $request->centro,
-            'ano' => $request->ano
-            ]);
 
-        Session::flash('flash_create', 'Requisición creada con éxito');
-        return redirect('/com_requisicion');
-    }
+        $requisicion = new Com_requisiciones;
+        $requision = Com_requisiciones::all();
+        $requisicion->fill($request->all());
+        $requisicion->descripcion = strtoupper($request->input('descripcion'));
+
+            if($requisicion->save())
+        {
+            $with = [
+            'flash_message' => 'Se registro la requisicion correctamente!',
+            'flash_class' => 'alert-success',
+            'requisicion' => $requisicion];
+
+        }else{
+            $with = [
+            'flash_message' => 'Ha ocurrido un error.',
+            'flash_class' => 'alert-danger',
+            'alert-important' => true
+            ];
+        }
+        //dd($with);
+        return redirect('com_requisicion')->with($with);
+
+        }
 
     /**
      * Display the specified resource.
@@ -88,10 +99,8 @@ class RequisicionesController extends Controller
         //
         $requisicion =  Com_requisiciones::findOrFail($id);
         $departamentos = Com_departamentos::all();
-        $año = Com_config::select('ano')->first();
-        $ruta = 'com_requisicion/'.$id;
-        $datos = ['departamentos' => $departamentos,'año' => $año, 'requisicion' => $requisicion, 'ruta' => $ruta, 'edit' => true];
-        return view('compras.requisiciones.update')->with($datos);
+        //$año = Date("Y");
+        return view('compras.requisiciones.modificar')->with(['departamentos' => $departamentos , 'requisicion' => $requisicion]);
     }
 
     /**
@@ -103,8 +112,9 @@ class RequisicionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $requisicion = Com_requisiciones::findOrFail($id);
+        dd($request->all());
+
+        /*$requisicion = Com_requisiciones::findOrFail($id);
         $datos = [
             'codigo' => $request->codigo,
             'descripcion' => $request->descripcion,
@@ -118,7 +128,7 @@ class RequisicionesController extends Controller
         $requisicion->fill($datos);
         $requisicion->update();
         Session::flash('flash_create', 'Requisición modificada con éxito');
-        return redirect('/com_requisicion');
+        return redirect('/com_requisicion');*/
     }
 
     /**

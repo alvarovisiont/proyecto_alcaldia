@@ -16,13 +16,13 @@
 			 @endif
 <div class="content">
 	<div class="row">
-		<form action="{{route('com_requisicion.store')}}" method="POST">
-		<input type="hidden" name="ano" value="{{$ano}}">
+		<form action="{{url('com_requisicion/'.$requisicion->id)}}" method="POST">
+		{{method_field('PUT')}}
      {{csrf_field()}}
 	<div class="col-md-6 col-md-offset-3">
 		 <div class="form-group">
 		 <label class="control-label">Codigo</label>
-		 <input type="text" name="codigo" class="form-control" value ="00{{$codigo}}" readonly>
+		 <input type="text" name="codigo" class="form-control" value ="{{$requisicion->codigo}}" readonly>
 	    </div>
 	</div>
     
@@ -30,12 +30,12 @@
      <div class="col-md-6">
      	<div class="form-group">
 		  <label class="control-label">Fecha</label>
-		  <input type="text"  name="fecha" class="form-control fecha" required>
+		  <input type="text"  name="fecha" class="form-control fecha" value="{{$requisicion->fecha}}" required>
 	    </div>
 
 		<div class="form-group">
 		   <label class="control-label">Status</label>
-		   <input type="text"  name="status" class="form-control" required readonly value="Vigente">
+		   <input type="text"  name="status" class="form-control" required readonly value="Vigente" value="{{$requisicion->status}}">
 		</div>  
      </div>
 
@@ -45,18 +45,18 @@
 		<select name="departamento_id" class="form-control" required>
 			<option value="">Seleccione...</option>
 		@foreach($departamentos as $depar)
-			<option value="{{$depar->id}}">{{$depar->programatica}}</option>
+			<option value="{{$depar->id}}" @if($depar->id == $depar->id): selected @endif>{{$depar->programatica}}</option>
 		@endforeach
 		</select>
 	</div>
 	<div class="form-group">
 		 <label class="control-label">Descripcion</label>
-		 <textarea class="form-control" type="text" name="descripcion" required></textarea>
+		 <textarea class="form-control" type="text" name="descripcion" required>{{$requisicion->descripcion}}</textarea>
 	   </div>
 </div>
 <div class="col-md-1 col-md-offset-5">
 	<div class="form-group">
-	   <input type="submit" name="enviar" value="Registrar" class="btn btn-flat btn-success">
+	   <input type="submit" name="enviar" value="Modificar" class="btn btn-flat btn-success">
 	</div>
 </div>
 		

@@ -17,11 +17,11 @@ class CreateComRequisicionesTable extends Migration
             $table->increments('id');
             $table->string('codigo',255);
             $table->text('descripcion');
-            $table->date('fecha');
+            $table->string('fecha');
             $table->string('status',255);
-            $table->text('des_unidad');
-            $table->string('unidad');
-            $table->string('centro');
+            $table->integer('departamento_id')->unsigned();
+            $table->foreign('departamento_id')->references('id')->on('com_departamentos')->onDelete('cascade');
+            $table->string('centro')->nullable();
             $table->integer('ano');
             $table->timestamps();
         });

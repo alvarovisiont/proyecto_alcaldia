@@ -53,6 +53,7 @@
 		<thead>
 			<tr>
 				<th class="text-center">Codigo</th>
+				<th class="text-center">Requisicion</th>
 				<th class="text-center">Cantidad</th>
 				<th class="text-center">Insumo</th>
 				<th class="text-center">Unidad</th>
@@ -63,6 +64,7 @@
 		@foreach($requisiciones as $req)
 			<tr>
 				<td class="text-center">00{{$req->codigo}}</td>
+				<td class="text-center"><a href="{{url('com_requisicion/'.$req->requisicion->id)}}">{{$req->requisicion->descripcion}}</a></td>
 				<td class="text-center">{{$req->cantidad}}</td>
 				<td class="text-center">{{$req->insumos->descripcion}}</td>
 				<td class="text-center">{{$req->insumos->unidades->descripcion}}</td>

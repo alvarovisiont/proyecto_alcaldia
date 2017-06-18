@@ -37,6 +37,16 @@
 		@endforeach
 		</select>
 	</div>
+
+	<div class="form-group">
+		<label class="control-label">Requisicion</label>
+		<select name="com_req_id" class="form-control" required>
+			<option value="">Seleccione...</option>
+		@foreach($req as $r)
+			<option value="{{$r->id}}">{{$r->descripcion}}    ||   Departamento: {{$r->departamento->programatica}}</option>
+		@endforeach
+		</select>
+	</div>
 	
 <div class="col-md-1 col-md-offset-5">
 	<div class="form-group">
@@ -56,6 +66,7 @@
 		<thead>
 			<tr>
 				<th class="text-center">Codigo</th>
+				<th class="text-center">Requisicion</th>
 				<th class="text-center">Cantidad</th>
 				<th class="text-center">Insumo</th>
 				<th class="text-center">Unidad</th>
@@ -66,8 +77,9 @@
 		@foreach($requisiciones as $req)
 			<tr>
 				<td class="text-center">00{{$req->codigo}}</td>
+				<td class="text-center"><a href="{{url('com_requisicion/'.$req->requisicion->id)}}">{{$req->requisicion->descripcion}}</a></td>
 				<td class="text-center">{{$req->cantidad}}</td>
-				<td class="text-center">{{$req->insumos->descripcion}}</td>
+				<td class="text-center"><a href="{{url('insumos/'.$req->insumos->id)}}">{{$req->insumos->descripcion}}</a></td>
 				<td class="text-center">{{$req->insumos->unidades->descripcion}}</td>
 				<td class="text-center">
 					 <a href="{{ url('req_detalle/'.$req->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>

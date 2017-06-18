@@ -40,7 +40,12 @@ class RequisicionesController extends Controller
         $departamentos = Com_departamentos::all();
         $año = Date("Y");
         $requisicion_codigo = $requisicion->last();
+        if($requisicion_codigo == null){
+                $codigo = 1;
+            }else{
+
         $codigo = $requisicion_codigo->codigo + 1;
+    }
         //dd($codigo);
         return view('compras.requisiciones.create',['departamentos'=>$departamentos,'ano' => $año,'codigo' => $codigo]);
     }

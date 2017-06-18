@@ -12,10 +12,16 @@ class Com_requisicionDetalle extends Model
     'codigo',
     'cantidad',
     'com_insumo_id',
-    'ano'];
+    'ano',
+    'com_req_id'];
 
     public function insumos()
     {
     	return $this->belongsTo('App\Com_insumos','com_insumo_id');
+    }
+
+    public function requisicion(){
+
+        return $this->belongsTo('App\Com_requisiciones','com_req_id');
     }
 }

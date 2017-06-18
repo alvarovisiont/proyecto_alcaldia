@@ -20,6 +20,8 @@ class CreateComRequisicionDetallesTable extends Migration
             $table->integer('com_insumo_id')->unsigned();
             $table->integer('ano');
             $table->foreign('com_insumo_id')->references('id')->on('com_insumos');
+            $table->integer('com_req_id')->unsigned();
+            $table->foreign('com_req_id')->references('id')->on('com_requisiciones')->onDelete('cascade');
             $table->timestamps();
         });
     }

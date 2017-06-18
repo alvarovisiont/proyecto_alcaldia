@@ -12,6 +12,7 @@
 			<tr>
 				<th class="text-center">#</th>
 				<th class="text-center">Codigo</th>
+				<th class="text-center">Requisicion</th>
 				<th class="text-center">Descripcion</th>
 				<th class="text-center">Fecha</th>
 				<th class="text-center">Unidad</th>
@@ -26,6 +27,7 @@
 				<tr>
 					<td>{{$i}}</td>
 					<td>{{$in->codigo}}</td>
+					<td>{{$in->requisicion->descripcion}}</td>
 					<td>{{$in->fecha}}</td>
 					<td>{{$in->status}}</td>
 					<td>{{$in->departamento->programatica}}</td>

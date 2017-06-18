@@ -30,6 +30,7 @@ class RequisicionDetalleController extends Controller
         //
         $requisicion = Com_requisicionDetalle::all();
         $insumos= Com_insumos::all();
+        $requi = Com_requisiciones::all();
         $año = Date("Y");
         $requisicion_codigo = $requisicion->last();
         	if($requisicion_codigo == null){
@@ -39,7 +40,7 @@ class RequisicionDetalleController extends Controller
         $codigo1 = $requisicion_codigo->codigo + 1;
     }
         //dd($codigo);
-        return view('compras.requisiciones_detalles.create',['insumos'=>$insumos,'ano' => $año,'codigo' => $codigo1,'requisiciones' => $requisicion]);
+        return view('compras.requisiciones_detalles.create',['insumos'=>$insumos,'ano' => $año,'codigo' => $codigo1,'requisiciones' => $requisicion,'req' => $requi]);
     }
 
     /**

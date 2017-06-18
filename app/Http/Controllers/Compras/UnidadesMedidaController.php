@@ -33,7 +33,12 @@ class UnidadesMedidaController extends Controller
         $unidades = new Com_unidades;
         $codigo_unidad = Com_unidades::all();
         $codigo2 = $codigo_unidad->last();
+        if($codigo2 == null){
+                $codigo = 1;
+            }else{
+
         $codigo = $codigo2->codigo + 1;
+    }
         $ruta = 'com_unidades';
         $datos = ['unidades' => $unidades, 'ruta' => $ruta, 'edit' => false, 'codigo' => $codigo];
         return view('compras.unidades.create')->with($datos);

@@ -31,7 +31,12 @@ class InsumosController extends Controller
         $unidades = Com_unidades::all();
         $insumos = Com_insumos::all();
         $insumo_id = $insumos->last();
-        $codigo = $insumo_id->id + 1;
+        if($insumo_id == null){
+                $codigo = 1;
+            }else{
+
+        $codigo = $insumo_id->codigo + 1;
+    }
 
 
         
@@ -50,6 +55,7 @@ class InsumosController extends Controller
         //dd($request->all());
         $insumo = new Com_insumos;
         $insumo = $insumo->fill($request->all());
+        $insumo->descripcion = strtoupper($request->input('descripcion'));
         if($insumo->save())
         {
             $with = [

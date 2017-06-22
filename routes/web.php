@@ -75,6 +75,17 @@ Route::resource('sub_area', 'SubAreaController');
 
 //****
 
+	// ====================== Reportes de compras ====================================
+
+	Route::get('/rep_insumos','Compras\\ReportesController@pdf_insumos')->name('pdf.insumos');
+	Route::get('/re_requisicion','Compras\\ReportesController@requision')->name('vista.requisicion');
+	Route::post('/bus_req','Compras\\ReportesController@busqueda_requisicion')->name('busqueda.requisicion');
+	Route::get('/re_departamentos','Compras\\ReportesController@pdf_departamentos')->name('pdf.departamentos');
+	Route::get('/re_proveedor','Compras\\ReportesController@pdf_proveedor')->name('pdf.proveedor');
+	Route::get('/re_unidades','Compras\\ReportesController@pdf_unidades')->name('pdf.unidades');
+
+//****
+
 
 
 $sub_area = Sub_area::all();

@@ -193,13 +193,16 @@
     <script src="{{asset('js/app.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
+     <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/highcharts.js')}}"></script>
     
     <script type="text/javascript">
       $(document).ready(function(){
+        $('div.alert').not('.alert-important').delay(2000).slideUp(300);
         $('.table').dataTable({
           'language' : {"url" : "json/esp.json"}
         });
+         $('.fecha').datepicker();
       });
     </script>
 

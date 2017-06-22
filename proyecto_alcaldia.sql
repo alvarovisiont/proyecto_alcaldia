@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2017 a las 14:58:38
+-- Tiempo de generación: 22-06-2017 a las 14:59:45
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -41,7 +41,7 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`id_acceso`, `user_id`, `departamento_id`, `area_id`, `sub_area_id`, `created_at`, `updated_at`) VALUES
-(5, 1, 1, '1,2,3,4,5,6', '3,4,5,6,7,8,9,10,11,12,13', '2017-06-15 02:27:48', '2017-06-15 02:27:48');
+(6, 1, 1, '1,2,3,4,5,6,7', '3,4,5,6,7,8,9,10,11,12,13,14', '2017-06-21 21:36:21', '2017-06-21 21:36:21');
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,8 @@ INSERT INTO `area` (`id_area`, `departamento_id`, `nombre`, `created_at`, `updat
 (3, 1, 'Unidades', '2017-06-07 21:54:18', '2017-06-07 21:54:34'),
 (4, 1, 'Configuración', '2017-06-07 21:54:59', '2017-06-07 21:54:59'),
 (5, 1, 'Requisiciones', '2017-06-07 21:55:17', '2017-06-07 21:55:17'),
-(6, 1, 'Insumos', '2017-06-15 02:25:37', '2017-06-15 02:25:37');
+(6, 1, 'Insumos', '2017-06-15 02:25:37', '2017-06-15 02:25:37'),
+(7, 1, 'Reportes', '2017-06-21 21:10:55', '2017-06-21 21:10:55');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ CREATE TABLE `com_departamentos` (
 --
 
 INSERT INTO `com_departamentos` (`id`, `programatica`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'CLAP', 'Departamento encargado de empaquetar la comida', '2017-06-18 16:46:09', '2017-06-18 16:46:09');
+(1, 'CLAP', 'Departamento encargado de empaquetar la comida', '2017-06-18 16:46:09', '2017-06-18 16:46:09'),
+(2, 'Catastro', 'Encargado de tierras', '2017-06-22 16:08:04', '2017-06-22 16:08:04');
 
 -- --------------------------------------------------------
 
@@ -145,6 +147,13 @@ CREATE TABLE `com_provees` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `com_provees`
+--
+
+INSERT INTO `com_provees` (`id`, `rif_cedula`, `razon_social`, `direccion`, `telefono`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, '20990397', 'PRoveedor Prueba', 'Cagua', '04123456789', 'LEs vende la tela de los uniformes', '2017-06-22 16:38:53', '2017-06-22 16:38:53');
+
 -- --------------------------------------------------------
 
 --
@@ -169,7 +178,8 @@ CREATE TABLE `com_requisiciones` (
 --
 
 INSERT INTO `com_requisiciones` (`id`, `codigo`, `descripcion`, `fecha`, `status`, `departamento_id`, `centro`, `ano`, `created_at`, `updated_at`) VALUES
-(1, '001', 'EMBOLSAR COMIDA DE CLAP', '22-06-2017', 'Vigente', 1, NULL, 2017, '2017-06-18 16:46:31', '2017-06-18 16:46:31');
+(1, '001', 'EMBOLSAR COMIDA DE CLAP', '06/08/2017', 'Vigente', 1, NULL, 2017, '2017-06-18 16:46:31', '2017-06-18 16:46:31'),
+(2, '002', 'COMPRA DE LAPIZ', '07/08/2017', 'Vigente', 2, NULL, 2017, '2017-06-22 16:08:27', '2017-06-22 16:08:27');
 
 -- --------------------------------------------------------
 
@@ -321,7 +331,8 @@ INSERT INTO `sub_area` (`id_sub_area`, `area_id`, `nombre`, `descripcion`, `ruta
 (10, 5, 'Ver requisiciones', 'ruta para ver las requisiciones del sistema', 'Compras\\Requisiciones.index', '2017-06-07 22:08:11', '2017-06-07 22:08:11'),
 (11, 5, 'Crear Requisición', 'vista para crear las requisiciones de compras', 'Compras\\Requisiciones.create', '2017-06-08 02:57:34', '2017-06-08 02:57:34'),
 (12, 6, 'Ver insumos', 'Ver todos los insumos registrados', 'Compras\\Insumos.index', '2017-06-15 02:26:04', '2017-06-15 02:26:04'),
-(13, 6, 'Registrar insumo', 'Registrar los insumos', 'Compras\\insumos.create', '2017-06-15 02:27:19', '2017-06-15 02:27:19');
+(13, 6, 'Registrar insumo', 'Registrar los insumos', 'Compras\\insumos.create', '2017-06-15 02:27:19', '2017-06-15 02:27:19'),
+(14, 7, 'Ver Reportes', 'vistas de todos los reportes', 'Compras\\reportes.index', '2017-06-21 21:36:02', '2017-06-21 21:36:02');
 
 -- --------------------------------------------------------
 
@@ -350,7 +361,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `nac`, `cedula`, `usuario`, `telefono`, `password`, `rol_id`, `departamento_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'xeichmann', 'Mrs. Aiyana Miller DDS', 'V', '21202500', 'admin', '04124362753', '$2y$10$aD9V4SIwIfGFLf8awp3SnON4dPQjTP9eBgdGRhwru2hdIKkvPiPS.', 1, 1, 'aidP9gH7MUqwaS3ZClBHEzBlerVW7hI9oyye4axRybpZS3b6HM5t1RNm7hHM', '2017-06-07 21:50:50', '2017-06-15 02:27:46');
+(1, 'xeichmann', 'Mrs. Aiyana Miller DDS', 'V', '21202500', 'admin', '04124362753', '$2y$10$b8l6JATw8MWuwdQuRYQLbOnR8YMsoimRTQB.CYFtrxmkXH8/CPHXO', 1, 1, 'LK2odFKuKUmWsneZ56rjLzLqeiHRCT4iuRjAIu76GXt200ZPzSSxnlTCPDPP', '2017-06-07 21:50:50', '2017-06-21 21:36:21');
 
 --
 -- Índices para tablas volcadas
@@ -456,12 +467,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `com_configs`
 --
@@ -471,7 +482,7 @@ ALTER TABLE `com_configs`
 -- AUTO_INCREMENT de la tabla `com_departamentos`
 --
 ALTER TABLE `com_departamentos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `com_insumos`
 --
@@ -481,12 +492,12 @@ ALTER TABLE `com_insumos`
 -- AUTO_INCREMENT de la tabla `com_provees`
 --
 ALTER TABLE `com_provees`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `com_requisiciones`
 --
 ALTER TABLE `com_requisiciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `com_requisicion_detalles`
 --
@@ -516,7 +527,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sub_area`
 --
 ALTER TABLE `sub_area`
-  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

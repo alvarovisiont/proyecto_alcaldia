@@ -19,4 +19,10 @@ class Com_requisiciones extends Model
 
     	return $this->hasMAny('App\Com_requisicion_Detalle');
     }
+
+    
+     public  function fechaBetween($desde,$hasta)
+    {
+        return $this->whereBetween('fecha',[$desde,$hasta])->get();
+    }
 }

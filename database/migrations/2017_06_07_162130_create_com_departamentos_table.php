@@ -16,6 +16,7 @@ class CreateComDepartamentosTable extends Migration
         Schema::create('com_departamentos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('programatica', 255);
+            $table->text('unidad_departamento');
             $table->text('descripcion');
             $table->timestamps();
         });

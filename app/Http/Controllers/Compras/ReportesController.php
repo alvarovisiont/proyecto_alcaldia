@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Compras;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use Barryvdh\DomPDF\Facade as PDF;
+
 use App\Com_insumos;
 use App\Com_requisiciones;
 use App\Com_unidades;
 use App\Com_provee;
 use App\Com_departamentos;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Com_ordenes;
 
 class ReportesController extends Controller
 {
@@ -91,7 +94,7 @@ class ReportesController extends Controller
         $fecha = date('Y-m-d');
         $pdf = PDF::loadView('compras.reportes.proveedores',['proveedores'=>$proveedores]);
 
-        return $pdf->download('proveedores'.$fecha.'.pdf');
+        return $pdf->download('proveedores '.$fecha.'.pdf');
     }
 
     public function pdf_unidades()
@@ -101,5 +104,41 @@ class ReportesController extends Controller
         $pdf = PDF::loadView('compras.reportes.unidades',['unidades'=>$unidades]);
 
         return $pdf->download('unidades'.$fecha.'.pdf');
+    }
+
+    public function vista_ordenes_pdf()
+    {
+        return view('compras.reportes.vista_ordenes');
+    }
+
+    public function generar_ordenes_pdf(Request $request)
+    {
+        $desde = date('Y-m-d',strtotime($request->desde));
+        $hasta = date('Y-m-d',strtotime($request->hasta));
+
+        if($request->tipo != "Todos")
+        {
+            $datos = Com_ordenes::select('*')
+                            ->where([
+                                ['fecha_orden','>=',$desde],
+                                ['fecha_orden','<=',$hasta],
+                                ['tipo_orden','=',$request->tipo]
+                            ])
+                            ->get();
+        }
+        else
+        {
+            $datos = Com_ordenes::select('*')
+                            ->where([
+                                ['fecha_orden','>=',$desde],
+                                ['fecha_orden','<=',$hasta],
+                            ])
+                            ->get();   
+        }
+
+        $fecha = date('Y-m-d');
+        $pdf = PDF::loadView('compras.reportes.ordenes_pdf',['datos'=>$datos]);
+
+        return $pdf->download('ordenes '.$fecha.'.pdf');
     }
 }

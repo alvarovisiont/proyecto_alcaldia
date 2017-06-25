@@ -17,7 +17,7 @@ class Com_requisiciones extends Model
 
     public function req_detalle(){
 
-    	return $this->hasMAny('App\Com_requisicion_Detalle');
+    	return $this->hasMAny('App\Com_requisicionDDetalle');
     }
 
     

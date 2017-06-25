@@ -8,7 +8,7 @@ class Com_departamentos extends Model
 {
     //
 
-    protected $fillable = ['programatica', 'descripcion'];
+    protected $fillable = ['programatica','unidad_departamento', 'descripcion'];
 
     public function requisicion()
     {

@@ -194,7 +194,6 @@
     <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
      <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/highcharts.js')}}"></script>
     
     <script type="text/javascript">
       $(document).ready(function(){
@@ -202,7 +201,11 @@
         $('.table').dataTable({
           'language' : {"url" : "json/esp.json"}
         });
-         $('.fecha').datepicker();
+         $('.fecha').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            language: 'es'
+         });
       });
     </script>
 

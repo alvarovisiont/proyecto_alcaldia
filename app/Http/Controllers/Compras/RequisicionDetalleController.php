@@ -71,7 +71,7 @@ class RequisicionDetalleController extends Controller
             ];
         }
         //dd($with);
-        return redirect('req_detalle/create')->with($with);
+        return redirect('com_req_detalle/create')->with($with);
 
 
 

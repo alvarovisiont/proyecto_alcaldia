@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-1">
-		<a href="{{url('insumos/'.$insumo->id.'/edit')}}" class="pull-left btn btn-flat btn-success" ><i class="fa fa-edit"></i> Editar</a>
+		<a href="{{url('com_insumos/'.$insumo->id.'/edit')}}" class="pull-left btn btn-flat btn-success" ><i class="fa fa-edit"></i> Editar</a>
 	</div>
 	<div class="col-md-1 col-md-offset-1">
 		<a href="" class="pull-left btn btn-flat btn-danger" data-target="#modal-delete-{{$insumo->id}}" data-toggle="modal"><i class="fa fa-trash"></i> Eliminar</a>
@@ -23,7 +23,7 @@
 <div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$insumo->id}}">
 
 <!-- Modal de eliminar usuario -->	
-<form method="POST" action="{{ url('insumos/'.$insumo->id) }}">
+<form method="POST" action="{{ url('com_insumos/'.$insumo->id) }}">
 {{csrf_field()}}
 {{method_field('DELETE')}}
 <div class="modal-dialog">

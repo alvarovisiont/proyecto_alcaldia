@@ -16,7 +16,7 @@
 			 @endif
 <div class="content">
 	<div class="row">
-		<form action="{{url('req_detalle/'.$req->id)}}" method="POST">
+		<form action="{{url('com_req_detalle/'.$req->id)}}" method="POST">
 	{{method_field('PUT')}}
      {{csrf_field()}}
 		 <div class="form-group">

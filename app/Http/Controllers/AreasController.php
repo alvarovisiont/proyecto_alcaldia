@@ -125,6 +125,7 @@ class AreasController extends Controller
 		        						"flash_class" => "alert-danger"
 	        						]);
 	    	}else{
+          Area::destroy($id);
 	    		return redirect('/areas')->with([
 	        						"flash_message" => "Area eliminada.",
 	        						"flash_class" => "alert-success"

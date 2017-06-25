@@ -16,7 +16,7 @@
 			 @endif
 <div class="content">
 	<div class="row">
-		<form action="{{route('req_detalle.store')}}" method="POST">
+		<form action="{{route('com_req_detalle.store')}}" method="POST">
 		<input type="hidden" name="ano" value="{{$ano}}">
      {{csrf_field()}}
 		 <div class="form-group">
@@ -82,8 +82,8 @@
 				<td class="text-center"><a href="{{url('insumos/'.$req->insumos->id)}}">{{$req->insumos->descripcion}}</a></td>
 				<td class="text-center">{{$req->insumos->unidades->descripcion}}</td>
 				<td class="text-center">
-					 <a href="{{ url('req_detalle/'.$req->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
-						<a href="{{ url('req_detalle/'.$req->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
+					 <a href="{{ url('com_req_detalle/'.$req->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
+						<a href="{{ url('com_req_detalle/'.$req->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 				</td>
 			</tr>
 		@endforeach

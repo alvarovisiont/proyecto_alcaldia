@@ -35,6 +35,7 @@
 			<tr>
 				<th class="text-center">#</th>
 				<th class="text-center">Programatica</th>
+				<th class="text-center">Unidad</th>
 				<th class="text-center">Descripción</th>
 				<th class="text-center"></th>
 			</tr>
@@ -45,6 +46,7 @@
 				<tr>
 					<td>{{$i}}</td>
 					<td>{{$con->programatica}}</td>
+					<td>{{$con->unidad_departamento}}</td>
 					<td>{{$con->descripcion}}</td>
 					<td>
 						<a href="{{ url('com_departamentos/'.$con->id.'/edit') }}" class="btn btn-flat btn-primary btn-sm" title="Editar"><i class="fa fa-edit"></i></a>

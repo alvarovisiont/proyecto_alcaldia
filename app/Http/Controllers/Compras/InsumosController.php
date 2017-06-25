@@ -18,6 +18,10 @@ class InsumosController extends Controller
     {
         $insumos = Com_insumos::all();
 
+        $insumos->each(function($insumos){
+            $insumos->unidades;
+        });
+
         return view('compras.insumos.index',['insumos' => $insumos]);
     }
 
@@ -70,7 +74,7 @@ class InsumosController extends Controller
             ];
         }
         //dd($with);
-        return redirect('/insumos')->with($with);
+        return redirect('/com_insumos')->with($with);
     }
 
     /**
@@ -126,7 +130,7 @@ class InsumosController extends Controller
             ];
         }
         //dd($with);
-        return redirect()->route('insumos.index')->with($with);
+        return redirect()->route('com_insumos.index')->with($with);
     }
 
     /**
@@ -158,6 +162,6 @@ class InsumosController extends Controller
             }
             
         
-        return redirect()->route('insumos.index')->with($with);
+        return redirect()->route('com_insumos.index')->with($with);
     }
 }

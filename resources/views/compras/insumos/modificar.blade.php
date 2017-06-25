@@ -15,7 +15,7 @@
 			 </div>
 			 @endif
 
-<form action="{{url('insumos/'.$insumo->id)}}" method="POST">
+<form action="{{url('com_insumos/'.$insumo->id)}}" method="POST">
 {{method_field('PUT')}}
 {{csrf_field()}}
 	<div class="form-group col-md-2 col-md-offset-4">

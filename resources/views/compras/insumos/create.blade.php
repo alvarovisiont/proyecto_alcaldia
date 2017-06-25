@@ -15,7 +15,7 @@
 			 </div>
 			 @endif
 
-<form action="{{route('insumos.store')}}" method="POST">
+<form action="{{url('com_insumos.store')}}" method="POST">
 {{csrf_field()}}
 	<div class="form-group col-md-2 col-md-offset-4">
 		<label class="control-label">Codigo</label>

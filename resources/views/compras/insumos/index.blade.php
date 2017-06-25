@@ -3,7 +3,7 @@
 @section('content')
 
 		
-	<h2 class="text-center">Insumos <a href="{{url('insumos/create')}}" class="pull-left btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+	<h2 class="text-center">Insumos <a href="{{url('com_insumos/create')}}" class="pull-left btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
  		Agregar INSUMO</a>
  	</h2>
 		@include('partials.flash')
@@ -28,8 +28,8 @@
 					<td>{{$in->cantidad}}</td>
 					<td>{{$in->unidades->descripcion}}</td>
 					<td>
-					  <a href="{{ url('insumos/'.$in->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
-						<a href="{{ url('insumos/'.$in->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
+					  <a href="{{ url('com_insumos/'.$in->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
+						<a href="{{ url('com_insumos/'.$in->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 					</td>
 				</tr>
 				@php $i++; @endphp

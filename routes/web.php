@@ -24,6 +24,12 @@ Route::post('/login', 'LoginController@auth')->name('login_autenticar');
 
 //****************************************************************************************************
 
+// =========================== METODOS AJAX REUTILIZABLES =======================================
+	 // ==== Comprass
+		Route::get('com_traer_detalles','AjaxController@traer_detalles_ordenes');
+
+// *************************************************************************************************
+
 // ========================== USUARIOS ========================================
 Route::get('perfil','UsuariosController@perfil')->name('perfil');
 Route::patch('users/update_perfil','UsuariosController@update_perfil')->name('update_perfil');
@@ -60,20 +66,11 @@ Route::resource('sub_area', 'SubAreaController');
 	Route::resource('com_unidades', 'Compras\\UnidadesMedidaController');
 	Route::resource('com_departamentos', 'Compras\\DepartamentosController');
 	Route::resource('com_requisicion', 'Compras\\RequisicionesController');
+	Route::resource('com_insumos','Compras\\InsumosController');
+	Route::resource('com_req_detalle','Compras\\RequisicionDetalleController');
+	Route::resource('com_ordenes', 'Compras\\OrdenesController');
+	Route::resource('com_ordenes_detalle', 'Compras\\OrdenesDetalleController');
 
-//*********************************************************************
-
-// ====================== INSUMOS ====================================
-
-	Route::resource('/insumos','Compras\\InsumosController');
-
-//*********************************************************************
-
-// ====================== Requisicion Detalles ====================================
-
-	Route::resource('/req_detalle','Compras\\RequisicionDetalleController');
-
-//****
 
 	// ====================== Reportes de compras ====================================
 
@@ -83,8 +80,12 @@ Route::resource('sub_area', 'SubAreaController');
 	Route::get('/re_departamentos','Compras\\ReportesController@pdf_departamentos')->name('pdf.departamentos');
 	Route::get('/re_proveedor','Compras\\ReportesController@pdf_proveedor')->name('pdf.proveedor');
 	Route::get('/re_unidades','Compras\\ReportesController@pdf_unidades')->name('pdf.unidades');
+	Route::get('/vista_ordenes_pdf', 'Compras\\ReportesController@vista_ordenes_pdf')->name('vista_pdf.ordenes');
+	Route::post('/imprimir_ordenes_pdf', 'Compras\\ReportesController@generar_ordenes_pdf')->name('pdf.ordenes');
 
-//****
+	//****
+
+//*********************************************************************
 
 
 

@@ -12,6 +12,12 @@
 		</div>
 		<label for="nombres" class="control-label col-md-2">Descripción</label>
 		<div class="col-md-4">
+			<textarea name="unidad_departamento" id="unidad_departamento" rows="2" required="" class="form-control">{{$departamentos->unidad_departamento}}</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="nombres" class="control-label col-md-2">Descripción</label>
+		<div class="col-md-4">
 			<textarea name="descripcion" id="descripcion" rows="2" required="" class="form-control">{{$departamentos->descripcion}}</textarea>
 		</div>
 	</div>

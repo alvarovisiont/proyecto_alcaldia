@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-1">
-		<a href="{{url('req_detalle/'.$requisicion->id.'/edit')}}" class="pull-left btn btn-flat btn-success" ><i class="fa fa-edit"></i> Editar</a>
+		<a href="{{url('com_req_detalle/'.$requisicion->id.'/edit')}}" class="pull-left btn btn-flat btn-success" ><i class="fa fa-edit"></i> Editar</a>
 	</div>
 	<div class="col-md-1 col-md-offset-1">
 		<a href="" class="pull-left btn btn-flat btn-danger" data-target="#modal-delete-{{$requisicion->id}}" data-toggle="modal"><i class="fa fa-trash"></i> Eliminar</a>
@@ -15,17 +15,17 @@
 
 <hr>
 <p><strong>Codigo: </strong>{{$requisicion->codigo}}</p>
-<p><strong>Cantidad:</strong>{{$requisicion->cantidad}}</p>
-<p><strong>Año:</strong>{{$requisicion->ano}}</p>
-<p><strong>Insumo</strong>{{$requisicion->insumos->descripcion}}</p>
-<p><strong>Unidad:</strong>{{$requisicion->insumos->unidades->descripcion}}</p>
+<p><strong>Cantidad: </strong>{{$requisicion->cantidad}}</p>
+<p><strong>Año: </strong>{{$requisicion->ano}}</p>
+<p><strong>Insumo </strong>{{$requisicion->insumos->descripcion}}</p>
+<p><strong>Unidad: </strong>{{$requisicion->insumos->unidades->descripcion}}</p>
 
 
 
 <div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$requisicion->id}}">
 
 <!-- Modal de eliminar usuario -->	
-<form method="POST" action="{{ url('req_detalle/'.$requisicion->id) }}">
+<form method="POST" action="{{ url('com_req_detalle/'.$requisicion->id) }}">
 {{csrf_field()}}
 {{method_field('DELETE')}}
 <div class="modal-dialog">

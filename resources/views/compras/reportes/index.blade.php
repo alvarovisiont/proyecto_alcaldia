@@ -29,7 +29,7 @@
 				<a href="{{route('pdf.unidades')}}" class="btn btn-flat btn-lg btn-warning">Unidades de medida</a>
 			</div>
 			<div class="col-md-3">
-				<a href="#" class="btn btn-flat btn-lg btn-warning">Ordenes(SIN HACER)</a>
+				<a href="{{ route('vista_pdf.ordenes') }}" class="btn btn-flat btn-lg btn-warning">Ordenes</a>
 			</div>
 
 		</div>

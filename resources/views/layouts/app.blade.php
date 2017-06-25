@@ -194,6 +194,7 @@
     <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
      <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.es.min.js')}}"></script>
     
     <script type="text/javascript">
       $(document).ready(function(){

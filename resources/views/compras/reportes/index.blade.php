@@ -4,17 +4,17 @@
 
 		
 	<div class="content">
-	<h3 class="text-center">Reportes</h3>
+	<h2 class="text-center">Reportes Disponibles</h2>
 	<hr>
 		<div class="row">
-			<div class="col-md-3 col-md-offset-2">
-				<a href="{{route('pdf.insumos')}}" class="btn btn-flat btn-lg btn-warning">Insumos</a>
+			<div class="col-md-4">
+				<a href="{{route('pdf.insumos')}}" class="btn btn-flat btn-lg btn-warning btn-block">Insumos</a>
 			</div>
-			<div class="col-md-3">
-				<a href="{{ route('vista.requisicion') }}" class="btn btn-flat btn-lg btn-warning">Requisiciones</a>
+			<div class="col-md-4">
+				<a href="{{ route('vista.requisicion') }}" class="btn btn-flat btn-lg btn-warning btn-block">Requisiciones</a>
 			</div>
-			<div class="col-md-3">
-				<a href="{{route('pdf.departamentos')}}" class="btn btn-flat btn-lg btn-warning">Departamentos</a>
+			<div class="col-md-4">
+				<a href="{{route('pdf.departamentos')}}" class="btn btn-flat btn-lg btn-warning btn-block">Departamentos</a>
 			</div>
 
 		</div>
@@ -22,14 +22,14 @@
 			<div class="col-md-12">&nbsp;</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 col-md-offset-2">
-				<a href="{{route('pdf.proveedor')}}" class="btn btn-flat btn-lg btn-warning">Proveedores</a>
+			<div class="col-md-4">
+				<a href="{{route('pdf.proveedor')}}" class="btn btn-flat btn-lg btn-warning btn-block">Proveedores</a>
 			</div>
-			<div class="col-md-3">
-				<a href="{{route('pdf.unidades')}}" class="btn btn-flat btn-lg btn-warning">Unidades de medida</a>
+			<div class="col-md-4">
+				<a href="{{route('pdf.unidades')}}" class="btn btn-flat btn-lg btn-warning btn-block">Unidades de medida</a>
 			</div>
-			<div class="col-md-3">
-				<a href="{{ route('vista_pdf.ordenes') }}" class="btn btn-flat btn-lg btn-warning">Ordenes</a>
+			<div class="col-md-4">
+				<a href="{{ route('vista_pdf.ordenes') }}" class="btn btn-flat btn-lg btn-warning btn-block">Ordenes</a>
 			</div>
 
 		</div>

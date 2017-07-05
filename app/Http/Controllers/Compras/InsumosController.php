@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Compras;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Com_insumos;
-use App\Com_unidades;
+use App\Compras\Com_insumos;
+use App\Compras\Com_unidades;
 
 class InsumosController extends Controller
 {

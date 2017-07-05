@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Compras;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use App\Com_departamentos;
+use App\Compras\Com_departamentos;
 
 use Session;
 

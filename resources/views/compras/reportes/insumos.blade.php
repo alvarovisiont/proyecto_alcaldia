@@ -22,24 +22,30 @@
 <body>
    <h3>LISTADO DE INSUMOS</h3>
 		<table>
-		  <thead>
-		  	<tr style="background-color: skyblue">
-				<th>CODIGO</th>
-				<th>DESCRIPCION</th>
-				<th>CANTIDAD</th>
-				<th>UNIDAD</th>
+		  <thead style="background-color: skyblue">
+			<tr>
+				<th class="text-center">#</th>
+				<th class="text-center">Codigo</th>
+				<th class="text-center">Descripcion</th>
+				<th class="text-center">Cantidad</th>
+				<th class="text-center">Unidad</th>
+				
 			</tr>
-		  </thead>
-		  <tbody>
-		  	<tr>
-		  	@foreach($insumos as $in)
-		  		<td>00{{$in->codigo}}</td>
-		  		<td>{{$in->descripcion}}</td>
-		  		<td>{{$in->cantidad}}</td>
-		  		<td>{{$in->unidades->descripcion}}</td>
-		  	@endforeach
-		  	</tr>
-		  </tbody>
+		</thead>
+		<tbody class="text-center">
+			@php $i=1; @endphp
+			@foreach($insumos as $in)
+				<tr>
+					<td>{{$i}}</td>
+					<td>00{{$in->codigo}}</td>
+					<td>{{$in->descripcion}}</td>
+					<td>{{$in->cantidad}}</td>
+					<td>{{$in->unidades->descripcion}}</td>
+					
+				</tr>
+				@php $i++; @endphp
+			@endforeach
+		</tbody>
 		</table>
 </body>
 </html>

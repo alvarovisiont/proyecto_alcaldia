@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Compras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Com_provee;
+use App\Compras\Com_provee;
 
 use Session;
 

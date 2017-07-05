@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Compras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Com_requisiciones;
-use App\Com_departamentos;
-use App\Com_config;
-use App\Com_requisicionDetalle;
-use App\Com_insumos;
+use App\Compras\Com_requisiciones;
+use App\Compras\Com_departamentos;
+use App\Compras\Com_config;
+use App\Compras\Com_requisicionDetalle;
+use App\Compras\Com_insumos;
 use Session;
 
 class RequisicionesController extends Controller

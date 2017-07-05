@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Compras;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Com_unidades extends Model
 
     public function insumos()
     {
-    	return $this->belongsTo('App\com_insumos');
+    	return $this->belongsTo('App\Compras\com_insumos');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Com_ordenes_detalle;
+use App\Compras\Com_ordenes_detalle;
 
 class AjaxController extends Controller
 {

@@ -121,22 +121,24 @@
             @php
               echo  session('menu');
             @endphp
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-cogs"></i>
-                <span>Developers</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i> Roles</a></li>
-                <li><a href="{{ route('departamentos.index') }}"><i class="fa fa-circle-o"></i> Departamentos</a></li>
-                <li><a href="{{ route('areas.index') }}"><i class="fa fa-circle-o"></i> Areas</a></li>
-                <li><a href="{{ route('sub_area.index') }}"><i class="fa fa-circle-o"></i> Sub-areas</a></li>
-                <li><a href="{{ route('usuario.create') }}"><i class="fa fa-circle-o"></i> Crear Usuarios</a></li>
-                <li><a href="{{ route('usuario.index') }}"><i class="fa fa-circle-o"></i> Administrar Usuarios</a></li>
-              </ul>
-            </li>                        
+            
+            @if(Auth::user()->rol_id == 1)
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-cogs"></i>
+                  <span>Developers</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i> Roles</a></li>
+                  <li><a href="{{ route('departamentos.index') }}"><i class="fa fa-circle-o"></i> Departamentos</a></li>
+                  <li><a href="{{ route('areas.index') }}"><i class="fa fa-circle-o"></i> Areas</a></li>
+                  <li><a href="{{ route('sub_area.index') }}"><i class="fa fa-circle-o"></i> Sub-areas</a></li>
+                  <li><a href="{{ route('usuario.create') }}"><i class="fa fa-circle-o"></i> Crear Usuarios</a></li>
+                  <li><a href="{{ route('usuario.index') }}"><i class="fa fa-circle-o"></i> Administrar Usuarios</a></li>
+                </ul>
+              </li>                        
+            @endif
           </ul>
         </section>
         <!-- /.sidebar -->

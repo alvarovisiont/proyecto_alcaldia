@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-06-2017 a las 02:18:51
+-- Tiempo de generación: 03-09-2017 a las 04:34:44
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -41,7 +41,8 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`id_acceso`, `user_id`, `departamento_id`, `area_id`, `sub_area_id`, `created_at`, `updated_at`) VALUES
-(7, 1, 1, '1,2,3,4,5,6,7,8', '3,4,5,6,7,8,9,10,11,12,13,14,15,16', '2017-06-24 19:50:44', '2017-06-24 19:50:44');
+(9, 1, 1, '1,2,3,4,5,6,7,8', '3,4,5,6,7,8,9,10,11,12,13,14,15,16', '2017-06-26 16:29:56', '2017-06-26 16:29:56'),
+(11, 3, 1, '2,5', '5,6,10,11', '2017-09-03 06:29:29', '2017-09-03 06:29:29');
 
 -- --------------------------------------------------------
 
@@ -377,7 +378,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'Servicio tecnico', 'servicio', '2017-06-18 16:37:22', '2017-06-18 16:37:22');
+(1, 'Administrador', 'Puede acceder a funciones que solo los programadores pueden', '2017-06-18 16:37:22', '2017-09-03 06:28:00'),
+(2, 'Operador', 'Usuario para otorgar a los trabajadores', '2017-09-03 06:28:30', '2017-09-03 06:28:30');
 
 -- --------------------------------------------------------
 
@@ -442,7 +444,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `nac`, `cedula`, `usuario`, `telefono`, `password`, `rol_id`, `departamento_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'xeichmann', 'Mrs. Aiyana Miller DDS', 'V', '21202500', 'admin', '04124362753', '$2y$10$2LXGNTuaPskMMoMcXhQf6etn6OLXV7p7DO7P9r73l3cmGorAW6Jr6', 1, 1, 'aal6koN4T0dLWsNBL7maKu5eW5ThqRZRYnfdenJdPDHj5ZP6hrbw6LnIuXyK', '2017-06-07 21:50:50', '2017-06-24 19:50:43');
+(1, 'xeichmann', 'Mrs. Aiyana Miller DDS', 'V', '21202500', 'admin', '04124362753', '$2y$10$4Y2mEk.YEa.MpkqnmUZOVunMuWwffsvwA0QGlJpTzxZj52t7rq4Xe', 1, 1, '304gt5xL6SieIw5t4ATYMyGXRxcVhJRhnXrOW59hnq4tmWZBJlZHZv3Ia8wJ', '2017-06-07 21:50:50', '2017-06-26 16:29:56'),
+(3, 'Gabriela', 'Moran', 'V', '24420507', 'gabriela', '04124392753', '$2y$10$sGOm0bC/ntghj8zs9ZMLpuqjbiAU2CE6wz7QjFb6x6ngeW8KMmaSS', 2, 1, 'ffBDUgIU7jrwHB1hbghIs40UbXkAhWyHSky3CglVyqZpq9OFQ18NLDpvdjy8', '2017-09-03 06:29:29', '2017-09-03 06:29:29');
 
 --
 -- Índices para tablas volcadas
@@ -561,7 +564,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
@@ -581,7 +584,7 @@ ALTER TABLE `com_departamentos`
 -- AUTO_INCREMENT de la tabla `com_insumos`
 --
 ALTER TABLE `com_insumos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `com_ordenes`
 --
@@ -591,7 +594,7 @@ ALTER TABLE `com_ordenes`
 -- AUTO_INCREMENT de la tabla `com_ordenes_detalles`
 --
 ALTER TABLE `com_ordenes_detalles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `com_provees`
 --
@@ -626,7 +629,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_rol` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `sub_area`
 --
@@ -636,7 +639,7 @@ ALTER TABLE `sub_area`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

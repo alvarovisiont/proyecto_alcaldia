@@ -1,5 +1,5 @@
 <?
-  echo bcrypt('admin123');
+  //echo bcrypt('admin123');
 ?>
 <head>
     <meta charset="utf-8">
@@ -58,19 +58,9 @@
         <div class="row">
           <div class="col-xs-4">
             <button id="b-login" type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
-
-  
-        
-
-        
-
           </div><!-- /.col -->
         </div>
       </form>
-
-      
     </div><!-- /.login-box-body -->
   </div><!-- /.login-box -->
-
-
 </body>

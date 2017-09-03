@@ -28,9 +28,7 @@
 
 			<div class="col-md-4">
 				<h4>Accesos</h4>
-					@foreach(Auth::user()->accesos AS $acc)
-					- {{ $acc->departamento->nombre }}<br>
-					@endforeach
+					{{ Auth::user()->departamentos->nombre }}
 			</div>
     </div>
 	</div>

@@ -18,8 +18,10 @@
 			
 				<!-- Departamentos ===================== -->
 				<div class="col-md-2">
-						<label for="{{'depar'.$depar->id_departamento}}" class="checkbox-inline"><input type="checkbox" id="{{'depar'.$depar->id_departamento}}" name="depar[]" value="{{$depar->id_departamento}}" class="departamento" {{$check_depar}}>
-						{{$depar->nombre}}</label>
+						<label for="{{'depar'.$depar->id_departamento}}" class="checkbox-inline">
+							<input type="checkbox" id="{{'depar'.$depar->id_departamento}}" name="depar[]" value="{{$depar->id_departamento}}" class="departamento" {{$check_depar}}>
+						{{$depar->nombre}}
+						</label>
 				</div>
 				<div class="form-group" id="{{'section_area'.$depar->id_departamento}}" style="display:none">
 					<div class="col-md-12">

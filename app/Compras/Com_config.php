@@ -8,4 +8,12 @@ class Com_config extends Model
 {
     //
     protected $fillable = ['ano', 'presidente', 'coordinador', 'correlativo'];
+
+    
+    public static function año_activo()
+	{	
+		return self::select('ano')->first();
+	}
 }
+
+

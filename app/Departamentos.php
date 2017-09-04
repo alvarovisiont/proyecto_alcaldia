@@ -14,7 +14,7 @@ class Departamentos extends Model
     protected $primaryKey = "id_departamento";
 
     public function areas(){
-    	return $this->hasMany('App\Area','id_area')->get();
+    	return $this->hasMany('App\Area','departamento_id')->get();
     }
 
     public function users(){

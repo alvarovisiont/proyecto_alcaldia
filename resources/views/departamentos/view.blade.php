@@ -38,7 +38,7 @@
 						<th class="text-center">Accion</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="text-center">
 					@php $i=1; @endphp
 					@foreach($areas->areas AS $area)
 						<tr>

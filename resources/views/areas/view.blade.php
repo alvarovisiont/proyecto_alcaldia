@@ -22,22 +22,22 @@
 			</div>
 			<div class="col-md-6">
 				<h4>Asignaciones</h4>
-				<p><b> Subareas:</b> {{ $subareas->count }}</p>
+				<p><b> Sub-areas:</b> {{ $subareas->count }}</p>
 			</div>
 		</div>
 		<br>
 		<div class="col-md-12">
-			<h3 class="text-center">SubAreas en el area</h3>
+			<h3 class="text-center">Sub-Areas en el area</h3>
 			<hr>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th class="text-center">#</th>
-						<th class="text-center">Subarea</th>
+						<th class="text-center">Sub-area</th>
 						<th class="text-center">Accion</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="text-center">
 					@php $i=1; @endphp
 					@foreach($subareas->subareas AS $sub)
 						<tr>

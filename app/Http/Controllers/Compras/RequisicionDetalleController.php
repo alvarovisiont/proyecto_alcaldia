@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Compras\Com_insumos;
 use App\Compras\Com_requisicionDetalle;
 use App\Compras\Com_requisiciones;
+use App\Compras\Com_config;
 
 class RequisicionDetalleController extends Controller
 {
@@ -28,9 +29,17 @@ class RequisicionDetalleController extends Controller
     public function create()
     {
         //
-        $requisicion = Com_requisicionDetalle::all();
-        $insumos= Com_insumos::all();
-        $requi = Com_requisiciones::all();
+        $ano = Com_config::año_activo();
+
+        $requi = Com_requisiciones::where([
+                                            ['status','Vigente'],
+                                            ['ano', $ano->ano]
+                                        ])->get();
+
+        $requisicion = Com_requisicionDetalle::select('*')->where('ano',$ano->ano)->get();
+        
+        $insumos = Com_insumos::select('*')->whereRaw("YEAR(CAST(created_at as date)) = $ano->ano")->get();
+
         $año = Date("Y");
         $requisicion_codigo = $requisicion->last();
         	if($requisicion_codigo == null){

@@ -22,6 +22,6 @@ class Area extends Model
     }
 
     public function subAreas(){
-    	return $this->hasMany('App\Sub_area','id_sub_area')->get();
+    	return $this->hasMany('App\Sub_area','area_id')->get();
     }
 }

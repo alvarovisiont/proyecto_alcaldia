@@ -122,6 +122,7 @@ class DepartamentosController extends Controller
 		        						"flash_class" => "alert-danger"
 	        						]);
 	    	}else{
+                Departamentos::destroy($id);
 	    		return redirect('/departamentos')->with([
 	        						"flash_message" => "Departamento eliminado.",
 	        						"flash_class" => "alert-success"

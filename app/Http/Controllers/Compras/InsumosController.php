@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Compras\Com_insumos;
 use App\Compras\Com_unidades;
+use App\Compras\Com_config;
 
 class InsumosController extends Controller
 {
@@ -16,7 +17,10 @@ class InsumosController extends Controller
      */
     public function index()
     {
-        $insumos = Com_insumos::all();
+        $ano = Com_config::año_activo();
+
+
+        $insumos = Com_insumos::select('*')->whereRaw("YEAR(CAST(created_at as date)) = $ano->ano")->get();
 
         $insumos->each(function($insumos){
             $insumos->unidades;

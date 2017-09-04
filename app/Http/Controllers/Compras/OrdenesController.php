@@ -8,6 +8,7 @@ use App\Compras\Com_ordenes;
 use App\Compras\Com_ordenes_detalle;
 Use App\Compras\Com_requisiciones;
 Use App\Compras\Com_provee;
+use App\Compras\Com_config;
 
 class OrdenesController extends Controller
 {
@@ -19,8 +20,11 @@ class OrdenesController extends Controller
     public function index()
     {
         //
-        $ordenes = Com_ordenes::all();
-        $com_detalle = Com_ordenes_detalle::all();
+
+        $ano = Com_config::año_activo();
+
+        $ordenes = Com_ordenes::select('*')->whereRaw(" YEAR(fecha_orden) = $ano->ano ")->get();
+        $com_detalle = Com_ordenes_detalle::select('*')->where('ano','=',$ano->ano)->get();
 
         $datos = ['ordenes' => $ordenes,'detalle' => $com_detalle];
         return view('compras.ordenes.index')->with($datos);

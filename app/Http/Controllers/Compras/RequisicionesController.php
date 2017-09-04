@@ -21,9 +21,17 @@ class RequisicionesController extends Controller
     public function index()
     {
         //
-        $requision = Com_requisiciones::where('status','Vigente')->get();
-         $requisicion = Com_requisicionDetalle::all();
-        $insumos= Com_insumos::all();
+        $ano = Com_config::año_activo();
+
+        $requision = Com_requisiciones::where([
+                                            ['status','Vigente'],
+                                            ['ano', $ano->ano]
+                                        ])->get();
+
+        $requisicion = Com_requisicionDetalle::select('*')->where('ano',$ano->ano)->get();
+        
+        $insumos = Com_insumos::select('*')->whereRaw("YEAR(CAST(created_at as date)) = $ano->ano")->get();
+
         return view('compras.requisiciones.index',['requisicion'=> $requision,'insumos'=>$insumos,'requisiciones' => $requisicion]);
 
     }
@@ -36,16 +44,23 @@ class RequisicionesController extends Controller
     public function create()
     {
         //
-        $requisicion = Com_requisiciones::all();
+        $ano = Com_config::año_activo();
+
+        $requision = Com_requisiciones::where([
+                                            ['status','Vigente'],
+                                            ['ano', $ano->ano]
+                                        ])->get();
+
         $departamentos = Com_departamentos::all();
         $año = Date("Y");
+
         $requisicion_codigo = $requisicion->last();
         if($requisicion_codigo == null){
-                $codigo = 1;
-            }else{
+            $codigo = 1;
+        }else{
 
-        $codigo = $requisicion_codigo->codigo + 1;
-    }
+            $codigo = $requisicion_codigo->codigo + 1;
+        }
         //dd($codigo);
         return view('compras.requisiciones.create',['departamentos'=>$departamentos,'ano' => $año,'codigo' => $codigo]);
     }
@@ -62,11 +77,10 @@ class RequisicionesController extends Controller
 
 
         $requisicion = new Com_requisiciones;
-        $requision = Com_requisiciones::all();
         $requisicion->fill($request->all());
         $requisicion->descripcion = strtoupper($request->input('descripcion'));
 
-            if($requisicion->save())
+        if($requisicion->save())
         {
             $with = [
             'flash_message' => 'Se registro la requisicion correctamente!',

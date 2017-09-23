@@ -6,68 +6,92 @@
 
 @section('content')
 	
-	@include('usuarios.partials.form', ['url' => 'usuario', 'usuario' => $usuario, 'edit' => false, 'areas' => $areas, 'sub_areas' => $sub_areas]);
+	@include('usuarios.partials.form')
 	
 @endsection
 
 @section('script')
 	<script>
 		$(function(){
-			var form = $("#form_usuario")
+
+			$('.area_checkbox').on('click',function(){
 			
-			$(form).find('.departamento').click(function(e) {
-				
-				let depar = e.target.value
-				
-				if(e.target.checked)
+			// Función que se ejecuta cuando a las areas se les clickea
+
+				var area = $(this).val(),
+						check  = $(this)
+
+				if(check.is(':checked'))
 				{
-					let cantidad = $(`#section_area${depar}`).find('.col-md-2').size()
-					if(cantidad > 0)
+
+					// Si el check esta checkeado se despliega el sub_area y se valida para agregar el departamento
+
+					$('.div_sub_'+area).show('slow/400/fast')
+
+					var depar = check.data().departamento,
+							depar_selec = $('#departamentos_grabar').val(),
+							depar_array  = depar_selec.split(','),
+							valida = true
+
+					for(var i = depar_array.length; i >= 0; i--)
 					{
-						$(`#section_area${depar}`).show('slow/400/fast')
+						if(depar == depar_array[i])
+						{
+							valida = false
+						}
+					}
+
+					if(valida)
+					{
+						depar_selec += depar+','
+						$('#departamentos_grabar').val(depar_selec)
 					}
 				}
 				else
 				{
+					// Código para validar que si todas las areas están desactivadas borrar el departamento a grabar
 
-					$(`#section_area${depar}`).hide('fast', function(){
-						$(this).find('.area').each(function(e){
-							
-							$(this).prop('checked', false)
+					var depar = check.data().departamento,
+							depar_selec = $('#departamentos_grabar').val(),
+							valida = true,
+							depar_selec_nuevo = ""
 
-							let sub = $(this).val();
-							
-							$(`#section_sub_area${sub}`).hide('fast', function(e){
-								$(this).find('.sub_area').each(function(e){
-									$(this).prop('checked', false)
-								})
-							})
-						})
+							depar_selec = depar_selec.substring(0, depar_selec.length -1)
+
+					var depar_array  = depar_selec.split(',')
+
+					$('.div_sub_'+area).hide('slow/400/fast')	
+
+					$('.area_checkbox[data-departamento="'+depar+'"]').each(function(e){
+						
+						if($(this).is(':checked'))
+						{
+							valida = false
+						}
 					})
-				}	
-					
-			})
 
-			$(form).find('.area').click(function(e) {
-				let area = e.target.value
-				
-				if(e.target.checked)
-				{
-					let cantidad = $(`#section_sub_area${area}`).find('.col-md-2').size()
-					if(cantidad > 0)
+					if(valida)
 					{
+						for(var i = depar_array.length -1; i >= 0; i--)
+						{
+							if(parseInt(depar) != parseInt(depar_array[i]))
+							{
+								depar_selec_nuevo += depar_array[i]+','
+							}
+							
+						}
+						
+						$('#departamentos_grabar').val(depar_selec_nuevo)
 
-						$(`#section_sub_area${area}`).show('slow/400/fast')
 					}
-				}
-				else
-				{
-					$(`#section_sub_area${area}`).hide('fast', function(){
-						$(this).find('.sub_area').each(function(e){
-							$(this).prop('checked', false)
-						})
+
+					// ** ====================== Código para validar que los hijos de esa área sean deseleccionados ============= 
+
+					$('.div_sub_'+area).children().children().children().each(function(e){
+						$(this).prop('checked',false)
 					})
-				}	
+
+				}
 			})
 		})
 	</script>

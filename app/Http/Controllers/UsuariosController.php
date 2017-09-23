@@ -83,8 +83,9 @@ class UsuariosController extends Controller
         $acceso = new Acceso;
 
         $validar_accion = false;
+        $url = 'usuario';
 
-        $datos = ['usuario' => $usuario, 'roles' => $roles, 'departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas, 'acceso' => $acceso, 'validar_accion' => $validar_accion];
+        $datos = ['url' => $url, 'usuario' => $usuario, 'roles' => $roles, 'departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas, 'acceso' => $acceso, 'validar_accion' => $validar_accion, 'edit' => false];
 
         return view('usuarios.create')->with($datos);
     }
@@ -103,28 +104,42 @@ class UsuariosController extends Controller
         $usuario->password = bcrypt($request->password);
         $usuario->save();
 
-        $validate = array_key_exists('depar', $request->all());
+        $validate = array_key_exists('departamentos_grabar', $request->all());
 
         if($validate)
         {
-            foreach ($request->depar as  $row) 
+            $depars = explode(',', $request->departamentos_grabar);
+
+            foreach ($depars as  $row) 
             {
+              if($row != '')
+              {
+                $area = "";
+                  $sub_area = "";
 
-                $acceso = new Acceso;
+                  $acceso = new Acceso;
 
-                $acceso->user_id = $usuario->id;
-                $area = implode($request->input('area_'.$row), ',');
-                $sub_area = "";
-                foreach ($request->input('area_'.$row) as $val) 
-                {
-                    $sub_area .= implode($request->input('sub_area_'.$val), ',').",";
-                }
+                  $acceso->user_id = $usuario->id;
+                  if(array_key_exists('area_'.$row, $request->all()))
+                  {
+                    $area = implode($request->input('area_'.$row), ',');
+                    
+                    foreach ($request->input('area_'.$row) as $val) 
+                    {
+                        if(array_key_exists('sub_area_'.$val, $request->all()))
+                        {
 
-                $sub_area = substr($sub_area, 0, strlen($sub_area) -1);
-                $acceso->departamento_id = $row;
-                $acceso->area_id = $area;
-                $acceso->sub_area_id = $sub_area;
-                $acceso->save();
+                          $sub_area .= implode($request->input('sub_area_'.$val), ',').",";
+                        }
+                    }
+                  }
+
+                  $sub_area = substr($sub_area, 0, strlen($sub_area) -1);
+                  $acceso->departamento_id = $row;
+                  $acceso->area_id = $area;
+                  $acceso->sub_area_id = $sub_area;
+                  $acceso->save();
+              }
             }
         }        
 
@@ -175,8 +190,9 @@ class UsuariosController extends Controller
         
         $areas = new Area;
         $sub_areas = new Sub_area;
+        $url = 'usuario/'.$usuario->id;
 
-        $datos = ['usuario' => $usuario, 'departamentos' => $departamentos, 'roles' => $roles, 'acceso' => $acceso, 'areas' => $areas, 'sub_areas' => $sub_areas, 'validar_accion' => $validar_accion];
+        $datos = ['url' => $url,'usuario' => $usuario, 'departamentos' => $departamentos, 'roles' => $roles, 'acceso' => $acceso, 'areas' => $areas, 'sub_areas' => $sub_areas, 'validar_accion' => $validar_accion, 'edit' => true];
 
         return view('usuarios.edit')->with($datos);
     }
@@ -207,27 +223,42 @@ class UsuariosController extends Controller
 
         Acceso::where('user_id',$usuario->id)->delete();
 
-        $validate = array_key_exists('depar', $request->all());
+        $validate = array_key_exists('departamentos_grabar', $request->all());
 
         if($validate)
         {
-            foreach ($request->depar as  $row) 
+            $depars = explode(',', $request->departamentos_grabar);
+
+            foreach ($depars as  $row) 
             {
-                $acceso = new Acceso;
+              if($row != '')
+              {
+                $area = "";
+                  $sub_area = "";
 
-                $acceso->user_id = $usuario->id;
-                $area = implode($request->input('area_'.$row), ',');
-                $sub_area = "";
-                foreach ($request->input('area_'.$row) as $val) 
-                {
-                    $sub_area .= implode($request->input('sub_area_'.$val), ',').",";
-                }
+                  $acceso = new Acceso;
 
-                $sub_area = substr($sub_area, 0, strlen($sub_area) -1);
-                $acceso->departamento_id = $row;
-                $acceso->area_id = $area;
-                $acceso->sub_area_id = $sub_area;
-                $acceso->save();   
+                  $acceso->user_id = $usuario->id;
+                  if(array_key_exists('area_'.$row, $request->all()))
+                  {
+                    $area = implode($request->input('area_'.$row), ',');
+                    
+                    foreach ($request->input('area_'.$row) as $val) 
+                    {
+                        if(array_key_exists('sub_area_'.$val, $request->all()))
+                        {
+
+                          $sub_area .= implode($request->input('sub_area_'.$val), ',').",";
+                        }
+                    }
+                  }
+
+                  $sub_area = substr($sub_area, 0, strlen($sub_area) -1);
+                  $acceso->departamento_id = $row;
+                  $acceso->area_id = $area;
+                  $acceso->sub_area_id = $sub_area;
+                  $acceso->save();
+              }
             }
         }        
         

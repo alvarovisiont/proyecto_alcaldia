@@ -1,5 +1,5 @@
 <?
-  //echo bcrypt('admin123');
+  echo bcrypt('admin123');
 ?>
 <head>
     <meta charset="utf-8">

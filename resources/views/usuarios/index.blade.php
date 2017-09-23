@@ -23,7 +23,12 @@
 			    </div>
 			</div>
 		</div>
-	<h2 class="text-center">Usuarios del sistema</h2>
+	<h2 class="text-center">
+		Usuarios del sistema 
+		<a href="{{url('usuario/create')}}" class="pull-right btn-flat btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+ 			Agregar Usuarios
+ 		</a>
+	</h2>
 	<table class="table table-bordered table-hover table-condensed" id="tabla">
 		<thead>
 			<tr>
@@ -46,7 +51,7 @@
 					<td>{{$row->roles->nombre}}</td>
 					<td>{{$row->departamentos->nombre}}</td>
 					<td>
-						<a href="{{ url('usuario/'.$row->id.'/edit') }}" class="btn btn-success btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
+						<a href="{{ url('usuario/'.$row->id.'/edit') }}" class="btn btn-primary btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 						<button type="button" class="btn btn-danger btn-sm eliminar" title="Eliminar" data-eliminar = "{{$row->id}}"><i class="fa fa-trash"></i></button>
 					</td>
 				</tr>

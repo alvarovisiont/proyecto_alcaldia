@@ -98,11 +98,29 @@
 	  </div>
 	
 	  	<div id="permisos" class="tab-pane fade">
-	    	@if($validar_accion)
-				@include('usuarios.partials.areas_modificar', ['departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas, 'acceso' => $acceso]);
-			@else
-				@include('usuarios.partials.areas_crear', ['departamentos' => $departamentos, 'areas' => $areas, 'sub_areas' => $sub_areas]);
-			@endif
+	  		<input type="hidden" id="departamentos_grabar" name="departamentos_grabar">
+	  		<table class="table table-hover table-bordered">
+	  			<thead>
+	  				<tr>
+	  					<th class="text-center" width="20%">Departamento</th>
+	  					<th class="text-center" width="80%">Areas y Sub-Areas</th>
+	  				</tr>
+	  			</thead>
+	  			<tbody>
+	  				@foreach($departamentos as $depar)
+						<tr>
+							<td width="20%">{{ $depar->nombre }}</td>
+							<td width="80%">
+								@if($validar_accion)
+									@include('usuarios.partials.areas_modificar')
+								@else
+									@include('usuarios.partials.areas_crear')
+								@endif
+							</td>
+						</tr>
+	  				@endforeach
+	  			</tbody>
+	  		</table>
 	  	</div>
 	</div>
 

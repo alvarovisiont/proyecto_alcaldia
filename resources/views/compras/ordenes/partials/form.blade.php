@@ -126,7 +126,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-md-4 col-md-offset-4">
-			<button type="submit" class="btn btn-success btn-block">Registrar&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i></button>
+			<button type="submit" class="btn btn-success btn-block" {{ Auth::user()->restringido()?'':'disabled' }}>Registrar&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i></button>
 		</div>
 		<div class="col-md-offset-1 col-md-3">
 			<a href="{{ route('com_ordenes.index')}}">Regresar al Listado de Ordenes</a>

@@ -2,8 +2,10 @@
 
 @section('view_descrip')
 <h3 class="text-center">Departamentos
+	@if(Auth::user()->restringido())
 			<a href="{{route('com_departamentos.create')}}" class="pull-right btn-flat btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
 	 		Agregar Departamentos</a>
+	@endif
 </h3>
 @endsection
 
@@ -37,7 +39,9 @@
 				<th class="text-center">Programatica</th>
 				<th class="text-center">Unidad</th>
 				<th class="text-center">Descripción</th>
-				<th class="text-center"></th>
+				@if(Auth::user()->restringido())
+				<th class="text-center">Accion</th>
+				@endif
 			</tr>
 		</thead>
 		<tbody class="text-center">
@@ -48,10 +52,12 @@
 					<td>{{$con->programatica}}</td>
 					<td>{{$con->unidad_departamento}}</td>
 					<td>{{$con->descripcion}}</td>
+					@if(Auth::user()->restringido())
 					<td>
 						<a href="{{ url('com_departamentos/'.$con->id.'/edit') }}" class="btn btn-flat btn-primary btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 						<button type="button" class="btn btn-danger btn-sm eliminar" title="Eliminar" data-eliminar = "{{$con->id}}"><i class="fa fa-trash"></i></button>
 					</td>
+					@endif
 				</tr>
 				@php $i++; @endphp
 			@endforeach

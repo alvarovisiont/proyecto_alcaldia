@@ -19,11 +19,11 @@
 {{csrf_field()}}
 	<div class="form-group col-md-4 col-md-offset-4">
 		<label class="control-label">Nombre del rol</label>
-		<input type="text" name="nombre" class="form-control">
+		<input type="text" name="nombre" class="form-control" required>
 	</div>
 	<div class="form-group col-md-4 col-md-offset-4">
 		<label class="control-label">Descripcion del rol</label>
-		<input type="text" name="descripcion" class="form-control">
+		<input type="text" name="descripcion" class="form-control" required>
 	</div>
 	
 		<div class="form-group col-md-12 col-md-offset-4">

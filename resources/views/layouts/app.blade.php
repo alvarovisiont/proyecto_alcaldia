@@ -117,12 +117,15 @@
             <li>
               <a href="{{ route('escritorio') }}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
             </li>
-            
+            @if(Auth::user()->rol_id == 1 || Auth::user()->rol_id == 3)
+            <li><a href="{{ route('usuario.create') }}"><i class="fa fa-circle-o"></i> Crear Usuarios</a></li>
+            @endif
+
             @php
               echo  session('menu');
             @endphp
             
-            @if(Auth::user()->rol_id == 1)
+            @if(Auth::user()->rol_id == 3)
               <li class="treeview">
                 <a href="#">
                   <i class="fa fa-cogs"></i>
@@ -134,7 +137,6 @@
                   <li><a href="{{ route('departamentos.index') }}"><i class="fa fa-circle-o"></i> Departamentos</a></li>
                   <li><a href="{{ route('areas.index') }}"><i class="fa fa-circle-o"></i> Areas</a></li>
                   <li><a href="{{ route('sub_area.index') }}"><i class="fa fa-circle-o"></i> Sub-areas</a></li>
-                  <li><a href="{{ route('usuario.create') }}"><i class="fa fa-circle-o"></i> Crear Usuarios</a></li>
                   <li><a href="{{ route('usuario.index') }}"><i class="fa fa-circle-o"></i> Administrar Usuarios</a></li>
                 </ul>
               </li>                        
@@ -168,10 +170,7 @@
                       <div class="col-md-12">
                               <!--Contenido-->
                                 @yield('content')
-                              <!--Fin Contenido-->
-                           </div>
-                        </div>
-                        
+                              <!--Fin Contenido-->                        
                       </div>
                     </div><!-- /.row -->
                 </div><!-- /.box-body -->

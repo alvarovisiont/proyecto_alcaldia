@@ -43,8 +43,23 @@ class User extends Authenticatable
         return $this->hasOne('App\Roles','id_rol','rol_id');
     }
 
-    public function accesos(){
+    public function accesos()
+    {
     	return $this->hasMany('App\Acceso','user_id');
+    }
+
+    public function restringido()
+    {
+    	switch ($this->rol_id) {
+    		case 1: $permiso = true; break;
+    		case 2: $permiso = true; break;
+    		case 3: $permiso = true; break;
+    		case 4: $permiso = true; break;
+    		case 5: $permiso = false; break;
+    		default: $permiso = false; break;
+    	}
+
+    	return $permiso;
     }
 
 

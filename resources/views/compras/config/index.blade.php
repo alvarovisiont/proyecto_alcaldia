@@ -18,7 +18,9 @@
 				<th class="text-center">Año</th>
 				<th class="text-center">Presidente</th>
 				<th class="text-center">Coordinador</th>
+				@if(Auth::user()->restringido())
 				<th class="text-center">Accion</th>
+				@endif
 			</tr>
 		</thead>
 		<tbody class="text-center">
@@ -29,9 +31,11 @@
 					<td>{{$con->ano}}</td>
 					<td>{{$con->presidente}}</td>
 					<td>{{$con->coordinador}}</td>
+					@if(Auth::user()->restringido())
 					<td>
 						<a href="{{ url('com_configuracion/'.$con->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 					</td>
+					@endif
 				</tr>
 				@php $i++; @endphp
 			@endforeach

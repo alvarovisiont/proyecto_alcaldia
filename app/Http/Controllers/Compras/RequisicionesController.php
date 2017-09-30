@@ -46,7 +46,7 @@ class RequisicionesController extends Controller
         //
         $ano = Com_config::año_activo();
 
-        $requision = Com_requisiciones::where([
+        $requisicion = Com_requisiciones::where([
                                             ['status','Vigente'],
                                             ['ano', $ano->ano]
                                         ])->get();

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::user()->restringido())
 <div class="row">
 	<div class="col-md-1">
 		<a href="{{url('com_requisicion/'.$requisicion->id.'/edit')}}" class="pull-left btn btn-flat btn-success" ><i class="fa fa-edit"></i> Editar</a>
@@ -9,7 +10,7 @@
 		<a href="" class="pull-left btn btn-flat btn-danger" data-target="#modal-delete-{{$requisicion->id}}" data-toggle="modal"><i class="fa fa-trash"></i> Eliminar</a>
 	</div>
 </div>
-
+@endif
 
 <h2 class="text-center"> Insumo - {{$requisicion->codigo}}</h2>
 

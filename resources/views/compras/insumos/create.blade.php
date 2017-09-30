@@ -44,7 +44,7 @@
 
 	
 		<div class="form-group col-md-12 col-md-offset-4">
-			<input type="submit" name="enviar" value="Registrar" class="btn btn-flat btn-success">
+			<input type="submit" name="enviar" value="Registrar" class="btn btn-flat btn-success" {{ Auth::user()->restringido()?'':'disabled' }}>
 		</div>
 </form>
 

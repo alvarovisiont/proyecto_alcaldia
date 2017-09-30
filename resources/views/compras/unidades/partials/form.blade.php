@@ -17,7 +17,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-md-4 col-md-offset-4">
-			<button type="submit" class="btn btn-block btn-danger">Guardar&nbsp;<i class="fa fa-send"></i></button>
+			<button type="submit" class="btn btn-block btn-danger" {{ Auth::user()->restringido()?'':'disabled' }}>Guardar&nbsp;<i class="fa fa-send"></i></button>
 		</div>
 		<div class="col-md-3 col-md-offset-1">
 			<a class="btn btn-link" href="{{route('com_unidades.index')}}">Volver a la vista de las unidades</a>

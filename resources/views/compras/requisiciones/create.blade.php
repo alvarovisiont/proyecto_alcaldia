@@ -56,7 +56,7 @@
 </div>
 <div class="col-md-1 col-md-offset-5">
 	<div class="form-group">
-	   <input type="submit" name="enviar" value="Registrar" class="btn btn-flat btn-success">
+	   <input type="submit" name="enviar" value="Registrar" class="btn btn-flat btn-success" {{ Auth::user()->restringido()?'':'disabled' }}>
 	</div>
 </div>
 		

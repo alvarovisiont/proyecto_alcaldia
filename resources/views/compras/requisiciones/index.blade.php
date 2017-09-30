@@ -3,10 +3,13 @@
 @section('content')
 
 		
-	<h2 class="text-center">Requisiciones <a href="{{url('com_requisicion/create')}}" class="pull-left btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+	<h2 class="text-center">Requisiciones
+		@if(Auth::user()->restringido())
+		<a href="{{url('com_requisicion/create')}}" class="pull-left btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
  		Agregar Requisicion</a>
  		 <a href="{{url('com_req_detalle/create')}}" class="pull-right btn btn-flat  btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Agregar Detalle</a>
  		 <br>
+ 		 @endif
  	</h2>
 		@include('partials.flash')
 	<table class="table table-bordered table-hover table-condensed tabla" >
@@ -19,7 +22,9 @@
 				<th class="text-center">Unidad</th>
 				<th class="text-center">Descripcion</th>
 				<th class="text-center">Año</th>
+				@if(Auth::user()->restringido())
 				<th class="text-center">Accion</th>
+				@endif
 			</tr>
 		</thead>
 		<tbody class="text-center">
@@ -33,10 +38,12 @@
 					<td>{{$in->departamento->programatica}}</td>
 					<td>{{$in->descripcion}}</td>
 					<td>{{$in->ano}}</td>
+					@if(Auth::user()->restringido())
 					<td>
 					  <a href="{{ url('com_requisicion/'.$in->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
 						<a href="{{ url('com_requisicion/'.$in->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 					</td>
+					@endif
 				</tr>
 				@php $i++; @endphp
 			@endforeach
@@ -57,7 +64,9 @@
 				<th class="text-center">Cantidad</th>
 				<th class="text-center">Insumo</th>
 				<th class="text-center">Unidad</th>
+				@if(Auth::user()->restringido())
 				<th class="text-center">Accion</th>
+				@endif
 			</tr>
 		</thead>
 		<tbody class="text-center">
@@ -68,10 +77,12 @@
 				<td class="text-center">{{$req->cantidad}}</td>
 				<td class="text-center">{{$req->insumos->descripcion}}</td>
 				<td class="text-center">{{$req->insumos->unidades->descripcion}}</td>
+				@if(Auth::user()->restringido())
 				<td class="text-center">
 					 <a href="{{ url('com_req_detalle/'.$req->id) }}" class="btn btn-flat btn-success btn-sm"><i class="fa fa-search"></i></a>
 						<a href="{{ url('com_req_detalle/'.$req->id.'/edit') }}" class="btn btn-flat btn-warning btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
 				</td>
+				@endif
 			</tr>
 		@endforeach
 		</tbody>

@@ -6,10 +6,13 @@
 
 @section('content')
 
-	<h2 class="text-center">Ordenes Registradas <a href="{{url('com_ordenes/create')}}" class="pull-left btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+	<h2 class="text-center">Ordenes Registradas
+		 @if(Auth::user()->restringido())
+		<a href="{{url('com_ordenes/create')}}" class="pull-left btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
  		Agregar Orden</a>
  		 <a href="{{url('com_ordenes_detalle/create?orden=')}}" class="pull-right btn btn-flat  btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Agregar Detalle</a>
  		 <br>
+ 		@endif
  	</h2>
 
  	@include('partials.flash')
@@ -24,7 +27,9 @@
 				<th class="text-center">Condición Compra</th>
 				<th class="text-center">Lugar Entrega</th>
 				<th class="text-center">Plazo Entrega</th>
+				@if(Auth::user()->restringido())
 				<th class="text-center">Acción</th>
+				@endif
 			</tr>
 		</thead>
 		<tbody class="text-center">
@@ -37,10 +42,12 @@
 					<td>{{$row->condicion_compra}}</td>
 					<td>{{$row->lugar_entrega}}</td>
 					<td>{{$row->plazo_entrega}}</td>
+					@if(Auth::user()->restringido())
 					<td>
 						<a href="{{url('com_ordenes/'.$row->id)}}" class="btn btn-success btn-sm" title="Ver Orden"><i class="fa fa-search"></i></a>
 						<a href="{{url('com_ordenes/'.$row->id.'/edit')}}" class="btn btn-warning btn-sm" title="Modificar Orden"><i class="fa fa-edit"></i></a>
 					</td>
+					@endif
 				</tr>
 			@endforeach
 		</tbody>
@@ -68,7 +75,9 @@
 				<th class="text-center">Iva %</th>
 				<th class="text-center">Total</th>
 				<th class="text-center">Año</th>
-				<th></th>
+				@if(Auth::user()->restringido())
+				<th>Accion</th>
+				@endif
 			</tr>
 		</thead>
 		<tbody class="text-center">
@@ -83,9 +92,11 @@
 					<td>{{$row->iva_porcentaje}}</td>
 					<td>{{number_format($row->total,2,',','.')}}</td>
 					<td>{{$row->ano}}</td>
+					@if(Auth::user()->restringido())
 					<td>
 						<a href="#" id="eliminar_detalle" data-eliminar="{{$row->id}}" class="eliminar"><i class="fa fa-trash"></i></a>
 					</td>
+					@endif
 				</tr>
 			@endforeach
 		</tbody>

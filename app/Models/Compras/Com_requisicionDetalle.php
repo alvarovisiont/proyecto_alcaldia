@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Compras;
+namespace App\Models\Compras;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,11 +17,11 @@ class Com_requisicionDetalle extends Model
 
     public function insumos()
     {
-    	return $this->belongsTo('App\Compras\Com_insumos','com_insumo_id');
+    	return $this->belongsTo('App\Models\Compras\Com_insumos','com_insumo_id');
     }
 
     public function requisicion(){
 
-        return $this->belongsTo('App\Compras\Com_requisiciones','com_req_id');
+        return $this->belongsTo('App\Models\Compras\Com_requisiciones','com_req_id');
     }
 }

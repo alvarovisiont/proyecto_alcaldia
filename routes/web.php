@@ -27,6 +27,8 @@ Route::post('/login', 'LoginController@auth')->name('login_autenticar');
 // =========================== METODOS AJAX REUTILIZABLES =======================================
 	 // ==== Comprass
 		Route::get('com_traer_detalles','AjaxController@traer_detalles_ordenes');
+	 // ==== Contabilidad
+		Route::get('cont_traer_auxiliares','AjaxController@traer_auxliares_cuentas');
 
 // *************************************************************************************************
 
@@ -86,6 +88,18 @@ Route::resource('sub_area', 'SubAreaController');
 	//****
 
 //*********************************************************************
+
+// ** ================================ CONTABILIDAD ========================================= ** //
+
+	Route::resource('cont_configuracion', 'Contabilidad\\ConfigController');
+	Route::resource('cont_maestroCuentas', 'Contabilidad\\MaestroCuentasController');
+	Route::resource('cont_auxiliares', 'Contabilidad\\AuxiliaresController');
+	Route::resource('cont_asientos', 'Contabilidad\\AsientosController');
+	Route::post('cont_asiento_detalles', 'Contabilidad\\AsientoDetallesController@store');
+	Route::delete('cont_asiento_detalles/{id}', 'Contabilidad\\AsientoDetallesController@delete');
+	
+
+// ** ======================================================================================= ** //
 
 
 

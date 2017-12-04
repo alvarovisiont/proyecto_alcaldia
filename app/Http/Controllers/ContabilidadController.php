@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Compras;
+namespace App\Http\Controllers\Contabilidad;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Compras\Com_provee;
-
-use Session;
 
 
-class ProveedoresController extends Controller
+class ContabilidadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +16,6 @@ class ProveedoresController extends Controller
     public function index()
     {
         //
-        $proveedores = Com_provee::all();
-        return view('compras.proveedores.index')->with('proveedores', $proveedores);
-
     }
 
     /**
@@ -32,10 +26,6 @@ class ProveedoresController extends Controller
     public function create()
     {
         //
-        $proveedores = new Com_provee;
-        $ruta = 'com_proveedores';
-        $datos = ['proveedores' => $proveedores, 'ruta' => $ruta, 'edit' => false];
-        return view('compras.proveedores.create')->with($datos);
     }
 
     /**
@@ -47,9 +37,6 @@ class ProveedoresController extends Controller
     public function store(Request $request)
     {
         //
-        Com_provee::create($request->all());
-        Session::flash('flash_create', 'Proveedor creado con éxito');
-        return redirect('com_proveedores');
     }
 
     /**
@@ -72,10 +59,6 @@ class ProveedoresController extends Controller
     public function edit($id)
     {
         //
-        $proveedores =  Com_provee::findOrFail($id);
-        $ruta = 'com_proveedores/'.$id;
-        $datos = ['proveedores' => $proveedores, 'ruta' => $ruta, 'edit' => true];
-        return view('compras.proveedores.update')->with($datos);
     }
 
     /**
@@ -88,11 +71,6 @@ class ProveedoresController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $provee = Com_provee::findOrFail($id);
-        $provee->fill($request->all());
-        $provee->update();
-        Session::flash('flash_create', 'Proveedor modificado con éxito');
-        return redirect('/com_proveedores');
     }
 
     /**
@@ -104,6 +82,5 @@ class ProveedoresController extends Controller
     public function destroy($id)
     {
         //
-        Com_provee::where('id',$id)->delete();
     }
 }

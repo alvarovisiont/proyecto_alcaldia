@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 
 use Barryvdh\DomPDF\Facade as PDF;
 
-use App\Compras\Com_insumos;
-use App\Compras\Com_requisiciones;
-use App\Compras\Com_unidades;
-use App\Compras\Com_provee;
-use App\Compras\Com_departamentos;
-use App\Compras\Com_ordenes;
+use App\Models\Compras\Com_insumos;
+use App\Models\Compras\Com_requisiciones;
+use App\Models\Compras\Com_unidades;
+use App\Models\Compras\Com_provee;
+use App\Models\Compras\Com_departamentos;
+use App\Models\Compras\Com_ordenes;
 
 class ReportesController extends Controller
 {

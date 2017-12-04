@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Compras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Compras\Com_unidades;
+use App\Models\Compras\Com_unidades;
 use Session;
 
 class UnidadesMedidaController extends Controller

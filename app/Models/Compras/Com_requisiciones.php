@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Compras;
+namespace App\Models\Compras;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,12 +12,12 @@ class Com_requisiciones extends Model
 
     public function departamento()
     {
-        return $this->belongsTo('App\Compras\Com_departamentos','departamento_id');
+        return $this->belongsTo('App\Models\Compras\Com_departamentos','departamento_id');
     }
 
     public function req_detalle(){
 
-    	return $this->hasMAny('App\Compras\Com_requisicionDDetalle');
+    	return $this->hasMAny('App\Models\Compras\Com_requisicionDDetalle');
     }
 
     

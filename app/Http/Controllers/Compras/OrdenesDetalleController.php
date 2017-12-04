@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Compras;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Compras\Com_ordenes;
-use App\Compras\Com_ordenes_detalle;
-use App\Compras\Com_insumos;
-use App\Compras\Com_config;
+use App\Models\Compras\Com_ordenes;
+use App\Models\Compras\Com_ordenes_detalle;
+use App\Models\Compras\Com_insumos;
+use App\Models\Compras\Com_config;
 
 class OrdenesDetalleController extends Controller
 {

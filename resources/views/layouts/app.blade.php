@@ -20,6 +20,7 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!--<link rel="shortcut icon" href="{{asset('img/unnamed.png')}}">-->
   </head>
 
@@ -126,7 +127,7 @@
             @endphp
             
             @if(Auth::user()->rol_id == 3)
-              <li class="treeview">
+              <li class="treeview"> 
                 <a href="#">
                   <i class="fa fa-cogs"></i>
                   <span>Developers</span>
@@ -139,8 +140,8 @@
                   <li><a href="{{ route('sub_area.index') }}"><i class="fa fa-circle-o"></i> Sub-areas</a></li>
                   <li><a href="{{ route('usuario.index') }}"><i class="fa fa-circle-o"></i> Administrar Usuarios</a></li>
                 </ul>
-              </li>                        
-            @endif
+              </li>                      
+            @endif  
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -200,9 +201,11 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $('div.alert').not('.alert-important').delay(2000).slideUp(300);
+
         $('.table').dataTable({
           'language' : {"url" : "json/esp.json"}
         });
+
          $('.fecha').datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Compras;
+namespace App\Models\Compras;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Com_ordenes extends Model
 
     public function detalle_orden()
     {
-    	return $this->hasMany('App\Compras\Com_ordenes_detalle');
+    	return $this->hasMany('App\Models\Compras\Com_ordenes_detalle');
     }
 }

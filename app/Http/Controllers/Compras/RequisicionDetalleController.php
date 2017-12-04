@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Compras;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Compras\Com_insumos;
-use App\Compras\Com_requisicionDetalle;
-use App\Compras\Com_requisiciones;
-use App\Compras\Com_config;
+use App\Models\Compras\Com_insumos;
+use App\Models\Compras\Com_requisicionDetalle;
+use App\Models\Compras\Com_requisiciones;
+use App\Models\Compras\Com_config;
 
 class RequisicionDetalleController extends Controller
 {

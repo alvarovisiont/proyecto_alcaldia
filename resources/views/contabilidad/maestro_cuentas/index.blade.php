@@ -49,7 +49,7 @@
 	    					<td>{{ $row->ano  }}</td>
 	    					@if(Auth::user()->restringido())
 	    						<td>
-	    							<a href="{{ url('cont_maestroCuentas/'.$row->id) }}" title="Editar Cuenta"><i class="fa fa-edit letras-medianas"></i></a>
+	    							<a href="{{ url('cont_maestroCuentas/'.$row->id.'/edit') }}" title="Editar Cuenta"><i class="fa fa-edit letras-medianas"></i></a>
 	    							<a href="#" class="eliminar letras-medianas" data-eliminar="{{$row->id}}" title="Eliminar Cuenta"><i class="fa fa-trash fa-1x"></i></a>
 	    						</td>
 	    					@endif

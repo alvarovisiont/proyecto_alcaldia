@@ -192,7 +192,7 @@ class UsuariosController extends Controller
         $sub_areas = new Sub_area;
         $url = 'usuario/'.$usuario->id;
 
-        $datos = ['url' => $url,'usuario' => $usuario, 'departamentos' => $departamentos, 'roles' => $roles, 'acceso' => $acceso, 'areas' => $areas, 'sub_areas' => $sub_areas, 'validar_accion' => $validar_accion, 'edit' => true];
+        $datos = ['url' => $url,'usuario' => $usuario, 'departamentos' => $departamentos, 'roles' => $roles, 'acceso' => $acceso, 'areas' => $areas, 'sub_areas' => $sub_areas, 'validar_accion' => $validar_accion, 'edit' => true, 'depars' => ''];
 
         return view('usuarios.edit')->with($datos);
     }
@@ -224,6 +224,8 @@ class UsuariosController extends Controller
         Acceso::where('user_id',$usuario->id)->delete();
 
         $validate = array_key_exists('departamentos_grabar', $request->all());
+
+
 
         if($validate)
         {

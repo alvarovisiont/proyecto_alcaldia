@@ -8,7 +8,6 @@
 	@php
 		$x = 1;
 		$valida = false;
-		$depars = '';
 	@endphp
 
 	@include('usuarios.partials.form')
@@ -19,6 +18,11 @@
 
 
 		$(function(){
+
+			var field1 = document.getElementById('acumulado_departamentos'),
+				field2 = document.getElementById('departamentos_grabar')
+				field2.value = field1.value
+
 
 			$('.area_checkbox').on('click',function(){
 			

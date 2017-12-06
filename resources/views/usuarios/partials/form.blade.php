@@ -9,6 +9,9 @@
 		{{method_field('PATCH')}}
 	@endif
 	{{csrf_field()}}
+
+	<input type="text" id="departamentos_grabar" name="departamentos_grabar">
+	<input type="text" id="acumulado_departamentos" name="">
 	
 	<div class="tab-content">	
 	  <div id="datos" class="tab-pane fade in active">
@@ -98,7 +101,6 @@
 	  </div>
 	
 	  	<div id="permisos" class="tab-pane fade">
-	  		<input type="hidden" id="departamentos_grabar" name="departamentos_grabar">
 	  		<table class="table table-hover table-bordered">
 	  			<thead>
 	  				<tr>

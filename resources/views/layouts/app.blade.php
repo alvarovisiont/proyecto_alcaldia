@@ -119,7 +119,7 @@
               <a href="{{ route('escritorio') }}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
             </li>
             @if(Auth::user()->rol_id == 1 || Auth::user()->rol_id == 3)
-            <li><a href="{{ route('usuario.create') }}"><i class="fa fa-circle-o"></i> Crear Usuarios</a></li>
+            <li><a href="{{ route('usuario.index') }}"><i class="fa fa-users"></i> Administrar Usuarios</a></li>
             @endif
 
             @php
@@ -183,7 +183,7 @@
       </div><!-- /.content-wrapper -->
       <!--Fin-Contenido-->
       <footer class="main-footer">
-        <strong>Copyright &copy; 2016-2017 <a href="#">Alcaldía del municipio sucre</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016-2017 <a href="#">Gobernación del Estado Sucre</a>.</strong> Todos los derechos reservados.
       </footer>
 
       

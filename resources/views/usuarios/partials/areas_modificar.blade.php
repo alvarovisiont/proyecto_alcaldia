@@ -99,6 +99,7 @@
 	@endphp
 
 	<script>
-		document.getElementById('departamentos_grabar').value = '<?= $depars; ?>'
+		var field = document.getElementById('acumulado_departamentos')
+		field.value = field.value + '<?= $depars; ?>'
 	</script>
 

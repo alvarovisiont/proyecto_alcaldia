@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Com_insumos extends Model
 {
 	public $table = 'com_insumos';
-    protected $fillable = ['codigo','descripcion','cantidad','id_unidad'];
+    protected $fillable = ['codigo','descripcion','cantidad','bienes','id_unidad'];
 
     function unidades()
     {

@@ -33,6 +33,15 @@
 	</div>
 
 	<div class="form-group col-md-4 col-md-offset-4">
+		<label class="control-label">Bien</label>
+		<select name="bienes" class="form-control" required="">
+			<option value="">Seleccione...</option>
+			<option value="1">Si</option>
+			<option value="0">No</option>
+		</select>
+	</div>
+
+	<div class="form-group col-md-4 col-md-offset-4">
 		<label class="control-label">Unidad</label>
 		<select name="id_unidad" class="form-control">
 			<option value="">Seleccione...</option>

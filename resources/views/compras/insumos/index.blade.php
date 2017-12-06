@@ -31,6 +31,7 @@
 						<th class="text-center">Codigo</th>
 						<th class="text-center">Descripcion</th>
 						<th class="text-center">Cantidad</th>
+						<th class="text-center">Bien</th>
 						<th class="text-center">Unidad</th>
 						@if(Auth::user()->restringido())
 						<th class="text-center">Accion</th>
@@ -45,6 +46,7 @@
 							<td>00{{$in->codigo}}</td>
 							<td>{{$in->descripcion}}</td>
 							<td>{{$in->cantidad}}</td>
+							<td>{{$in->bienes == 0 ? 'No' :  'Si'}}</td>
 							<td>{{$in->unidades->descripcion}}</td>
 							@if(Auth::user()->restringido())
 							<td>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2017 a las 23:00:52
+-- Tiempo de generación: 06-12-2017 a las 21:29:08
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -44,8 +44,8 @@ CREATE TABLE `acceso` (
 
 INSERT INTO `acceso` (`id_acceso`, `user_id`, `departamento_id`, `area_id`, `sub_area_id`, `created_at`, `updated_at`) VALUES
 (11, 3, 1, '2,5', '5,6,10,11', '2017-09-03 06:29:29', '2017-09-03 06:29:29'),
-(24, 1, 2, '9,10,11,12', '17,18,19,20,21', '2017-12-04 20:45:34', '2017-12-04 20:45:34'),
-(25, 1, 1, '1,2,3,4,5,6,7,8', '3,4,5,6,7,8,9,10,11,12,13,14,15,16', '2017-12-04 20:45:34', '2017-12-04 20:45:34');
+(26, 1, 1, '1,2,3,4,5,6,7,8', '3,4,5,6,7,8,9,10,11,12,13,14,15,16', '2017-12-06 17:17:34', '2017-12-06 17:17:34'),
+(27, 1, 2, '9,10,11,12,13', '17,18,19,20,21,22', '2017-12-06 17:17:34', '2017-12-06 17:17:34');
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,8 @@ INSERT INTO `area` (`id_area`, `departamento_id`, `nombre`, `created_at`, `updat
 (9, 2, 'Configuración', '2017-11-30 21:25:11', '2017-11-30 21:25:11'),
 (10, 2, 'Maestro Cuentas', '2017-12-01 00:41:34', '2017-12-01 01:00:31'),
 (11, 2, 'Axuliares', '2017-12-04 19:12:27', '2017-12-04 19:12:27'),
-(12, 2, 'Asientos', '2017-12-04 20:43:50', '2017-12-04 20:43:50');
+(12, 2, 'Asientos', '2017-12-04 20:43:50', '2017-12-04 20:43:50'),
+(13, 2, 'Libro Mayor', '2017-12-06 16:45:25', '2017-12-06 16:45:25');
 
 -- --------------------------------------------------------
 
@@ -135,6 +136,7 @@ CREATE TABLE `com_insumos` (
   `codigo` int(11) NOT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cantidad` decimal(11,2) NOT NULL,
+  `bienes` smallint(6) NOT NULL,
   `id_unidad` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -144,9 +146,9 @@ CREATE TABLE `com_insumos` (
 -- Volcado de datos para la tabla `com_insumos`
 --
 
-INSERT INTO `com_insumos` (`id`, `codigo`, `descripcion`, `cantidad`, `id_unidad`, `created_at`, `updated_at`) VALUES
-(1, 1, 'COMPRA DE BOLSAS PLASTICA', '12.00', 1, '2017-06-18 16:44:47', '2017-06-18 16:44:47'),
-(2, 2, 'HARINA PAN', '10.00', 2, '2017-06-25 03:07:12', '2017-06-25 03:07:12');
+INSERT INTO `com_insumos` (`id`, `codigo`, `descripcion`, `cantidad`, `bienes`, `id_unidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 'COMPRA DE BOLSAS PLASTICA', '12.00', 1, 1, '2017-06-18 16:44:47', '2017-12-07 00:28:16'),
+(2, 2, 'HARINA PAN', '10.00', 0, 2, '2017-06-25 03:07:12', '2017-06-25 03:07:12');
 
 -- --------------------------------------------------------
 
@@ -333,7 +335,8 @@ CREATE TABLE `cont_asientos` (
 --
 
 INSERT INTO `cont_asientos` (`id`, `comprobante`, `descripcion`, `fecha`, `status`, `cont_configs_id`, `created_at`, `updated_at`) VALUES
-(1, '2017000012', 'azdasdas', '2017-12-04', 1, 1, '2017-12-05 01:53:56', '2017-12-05 01:53:56');
+(1, '2017000012', 'azdasdas', '2017-12-04', 1, 1, '2017-12-05 01:53:56', '2017-12-05 01:53:56'),
+(2, '201712000003', 'segundo asiento', '2017-12-05', 1, 1, '2017-12-06 20:15:15', '2017-12-06 20:15:15');
 
 -- --------------------------------------------------------
 
@@ -360,7 +363,10 @@ CREATE TABLE `cont_asiento_detalles` (
 
 INSERT INTO `cont_asiento_detalles` (`id`, `cont_asientos_id`, `cont__master_accounts_id`, `cont_auxiliares_id`, `cont_configs_id`, `referencia`, `debe`, `haber`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 0, 1, NULL, 125000.00, NULL, '2017-12-05 01:55:18', '2017-12-05 01:55:18'),
-(2, 1, 2, 2, 1, 'any references', NULL, 125000.00, '2017-12-05 01:59:08', '2017-12-05 01:59:08');
+(2, 1, 2, 2, 1, 'any references', NULL, 125000.00, '2017-12-05 01:59:08', '2017-12-05 01:59:08'),
+(4, 1, 3, 3, 1, NULL, NULL, 30000.00, '2017-12-06 20:19:32', '2017-12-06 20:19:32'),
+(5, 2, 2, 0, 1, NULL, 130000.00, NULL, '2017-12-06 20:19:58', '2017-12-06 20:19:58'),
+(6, 2, 3, 0, 1, NULL, NULL, 130000.00, '2017-12-06 20:20:20', '2017-12-06 20:20:20');
 
 -- --------------------------------------------------------
 
@@ -383,7 +389,8 @@ CREATE TABLE `cont_auxiliares` (
 --
 
 INSERT INTO `cont_auxiliares` (`id`, `auxiliar`, `descripcion`, `cont__master_accounts_id`, `cont_configs_id`, `created_at`, `updated_at`) VALUES
-(2, '001', 'Any drescription', 2, 1, '2017-12-05 01:58:31', '2017-12-05 01:58:31');
+(2, '001', 'Any drescription', 2, 1, '2017-12-05 01:58:31', '2017-12-05 01:58:31'),
+(3, '001', 'primer auxiliar de la cuenta 001', 3, 1, '2017-12-06 20:17:50', '2017-12-06 20:17:50');
 
 -- --------------------------------------------------------
 
@@ -433,7 +440,8 @@ CREATE TABLE `cont__master_accounts` (
 --
 
 INSERT INTO `cont__master_accounts` (`id`, `cuenta`, `descripcion`, `operativa`, `detalle`, `p21`, `ano`, `cont_configs_id`, `created_at`, `updated_at`) VALUES
-(2, '00002', 'second account', 0, 1, 102, 2017, 1, '2017-12-01 03:05:33', '2017-12-01 03:05:33');
+(2, '00002', 'second account', 1, 1, 102, 2017, 1, '2017-12-01 03:05:33', '2017-12-06 20:16:40'),
+(3, '001', 'primera cuenta', 1, 0, 103, 2017, 1, '2017-12-06 20:17:15', '2017-12-06 20:17:15');
 
 -- --------------------------------------------------------
 
@@ -455,7 +463,7 @@ CREATE TABLE `departamentos` (
 --
 
 INSERT INTO `departamentos` (`id_departamento`, `nombre`, `descripcion`, `fa_class`, `created_at`, `updated_at`) VALUES
-(1, 'Compras', 'departamento de compras', 'fa fa-home', '2017-06-07 21:50:49', '2017-06-07 21:50:49'),
+(1, 'Compras', 'departamento de compras', 'fa fa-shopping-cart', '2017-06-07 21:50:49', '2017-12-07 00:08:05'),
 (2, 'Contabilidad', 'Departamento que lleva los asientos contables y cuentas de la alcaldia', 'fa fa-money', '2017-11-30 21:24:51', '2017-11-30 21:24:51');
 
 -- --------------------------------------------------------
@@ -557,7 +565,8 @@ INSERT INTO `sub_area` (`id_sub_area`, `area_id`, `nombre`, `descripcion`, `ruta
 (18, 9, 'Nueva Configuración', 'Módulo para crear una configuración', 'Contabilidad\\Config.create', '2017-12-01 00:42:29', '2017-12-01 00:42:29'),
 (19, 10, 'Administrar Cuentas', 'Módulo para administrar  la cuentas contables', 'Contabilidad\\MaestroCuentas.index', '2017-12-01 00:55:38', '2017-12-01 01:38:28'),
 (20, 11, 'Administrar Auxiliares', 'Módulo para administrar los auxiliares de los maestros de cuentas', 'Contabilidad\\Auxiliares.index', '2017-12-04 19:13:39', '2017-12-04 19:27:48'),
-(21, 12, 'Administrar Asientos', 'Módulo para administrar los asientos de contabilidad', 'Contabilidad\\Asientos.index', '2017-12-04 20:44:29', '2017-12-04 20:44:29');
+(21, 12, 'Administrar Asientos', 'Módulo para administrar los asientos de contabilidad', 'Contabilidad\\Asientos.index', '2017-12-04 20:44:29', '2017-12-04 20:44:29'),
+(22, 13, 'Generar Libro Mayor', 'Módulo para generar el libro mayor de contabilidad', 'Contabilidad\\Reportes.libro_mayor', '2017-12-06 16:46:27', '2017-12-06 16:46:27');
 
 -- --------------------------------------------------------
 
@@ -586,7 +595,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `nac`, `cedula`, `usuario`, `telefono`, `password`, `rol_id`, `departamento_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Alvaro Antonio', 'Guedez Crespo', 'v', '21202500', 'admin', '04124362753', '$2y$10$dOJua9fTDj4rB2PRExP5yeivPpILv3bmXIe1z8M.nybOkWfSyxCmC', 3, 2, 'aJtJ2wXd9L6tZVIyLJHxAtvihX564SMVadxZcgjkxRFhdlnVgcLD4ir5FE4B', '2017-12-04 04:00:00', '2017-12-04 04:00:00');
+(1, 'Alvaro Antonio', 'Guedez Crespo', 'V', '21202500', 'admin', '04124362753', '$2y$10$xk7zzK./nW98EHkrwwuaFeUfR3CVWrRDQffmpZHPTIx1/NXsTGyWe', 3, 2, 'Xrjuwn6nhrYrdtCdZbcV23XgqzPVXgy4svOaHXKW4NdaEycvc1ZwxVfrdATM', '2017-12-04 04:00:00', '2017-12-06 17:17:34');
 
 --
 -- Índices para tablas volcadas
@@ -741,12 +750,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `com_configs`
 --
@@ -796,17 +805,17 @@ ALTER TABLE `com_unidades`
 -- AUTO_INCREMENT de la tabla `cont_asientos`
 --
 ALTER TABLE `cont_asientos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `cont_asiento_detalles`
 --
 ALTER TABLE `cont_asiento_detalles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `cont_auxiliares`
 --
 ALTER TABLE `cont_auxiliares`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `cont_configs`
 --
@@ -816,7 +825,7 @@ ALTER TABLE `cont_configs`
 -- AUTO_INCREMENT de la tabla `cont__master_accounts`
 --
 ALTER TABLE `cont__master_accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
@@ -836,7 +845,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sub_area`
 --
 ALTER TABLE `sub_area`
-  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

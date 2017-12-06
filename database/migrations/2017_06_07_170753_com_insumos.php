@@ -18,6 +18,7 @@ class ComInsumos extends Migration
             $table->integer('codigo');
             $table->string('descripcion')->nullable();
             $table->decimal('cantidad', 11, 2);
+            $table->smallInteger('bienes')->default(0);
             $table->integer('id_unidad')->unsigned();
             $table->foreign('id_unidad')->references('id')->on('com_unidades')->onDelete('cascade');
             $table->timestamps();

@@ -97,7 +97,10 @@ Route::resource('sub_area', 'SubAreaController');
 	Route::resource('cont_asientos', 'Contabilidad\\AsientosController');
 	Route::post('cont_asiento_detalles', 'Contabilidad\\AsientoDetallesController@store');
 	Route::delete('cont_asiento_detalles/{id}', 'Contabilidad\\AsientoDetallesController@delete');
-	Route::get('/cont_libro_mayor_pdf','Contabilidad\\ReportesController@libro_mayor_pdf');
+	// reportes 
+		Route::get('/cont_libro_mayor_pdf','Contabilidad\\ReportesController@libro_mayor_pdf');
+		Route::get('/cont_balance_comprobacion_pdf','Contabilidad\\ReportesController@balance_comprobacion_pdf');
+		
 
 // ** ======================================================================================= ** //
 

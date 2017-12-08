@@ -10,8 +10,8 @@
 	@endif
 	{{csrf_field()}}
 
-	<input type="text" id="departamentos_grabar" name="departamentos_grabar">
-	<input type="text" id="acumulado_departamentos" name="">
+	<input type="hidden" id="departamentos_grabar" name="departamentos_grabar">
+	<input type="hidden" id="acumulado_departamentos" name="">
 	
 	<div class="tab-content">	
 	  <div id="datos" class="tab-pane fade in active">

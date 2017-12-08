@@ -17,6 +17,14 @@ class AsientoDetallesController extends Controller
 
     	$detalle = new Cont_asiento_detalle;
     	$detalle->fill($request->all());
+        if($detalle->haber == null)
+        {
+            $detalle->haber = 0;
+        }
+        if($detalle->debe == null)
+        {
+            $detalle->debe = 0;
+        }
 
     	$detalle->cont_configs_id = Cont_config::configActivate()->id;
     	$detalle->save();

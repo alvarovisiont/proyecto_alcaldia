@@ -100,6 +100,8 @@ Route::resource('sub_area', 'SubAreaController');
 	// reportes 
 		Route::get('/cont_libro_mayor_pdf','Contabilidad\\ReportesController@libro_mayor_pdf');
 		Route::get('/cont_balance_comprobacion_pdf','Contabilidad\\ReportesController@balance_comprobacion_pdf');
+		Route::get('/cont_balance_general_pdf','Contabilidad\\ReportesController@balance_general_pdf');
+		
 		
 
 // ** ======================================================================================= ** //

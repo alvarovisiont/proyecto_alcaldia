@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2017 a las 21:29:08
+-- Tiempo de generación: 09-12-2017 a las 16:15:37
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -44,8 +44,8 @@ CREATE TABLE `acceso` (
 
 INSERT INTO `acceso` (`id_acceso`, `user_id`, `departamento_id`, `area_id`, `sub_area_id`, `created_at`, `updated_at`) VALUES
 (11, 3, 1, '2,5', '5,6,10,11', '2017-09-03 06:29:29', '2017-09-03 06:29:29'),
-(26, 1, 1, '1,2,3,4,5,6,7,8', '3,4,5,6,7,8,9,10,11,12,13,14,15,16', '2017-12-06 17:17:34', '2017-12-06 17:17:34'),
-(27, 1, 2, '9,10,11,12,13', '17,18,19,20,21,22', '2017-12-06 17:17:34', '2017-12-06 17:17:34');
+(30, 1, 1, '1,2,3,4,5,6,7,8', '3,4,5,6,7,8,9,10,11,12,13,14,15,16', '2017-12-09 18:00:26', '2017-12-09 18:00:26'),
+(31, 1, 2, '9,10,11,12,13,14,15', '17,18,19,20,21,22,23,24', '2017-12-09 18:00:26', '2017-12-09 18:00:26');
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,9 @@ INSERT INTO `area` (`id_area`, `departamento_id`, `nombre`, `created_at`, `updat
 (10, 2, 'Maestro Cuentas', '2017-12-01 00:41:34', '2017-12-01 01:00:31'),
 (11, 2, 'Axuliares', '2017-12-04 19:12:27', '2017-12-04 19:12:27'),
 (12, 2, 'Asientos', '2017-12-04 20:43:50', '2017-12-04 20:43:50'),
-(13, 2, 'Libro Mayor', '2017-12-06 16:45:25', '2017-12-06 16:45:25');
+(13, 2, 'Libro Mayor', '2017-12-06 16:45:25', '2017-12-06 16:45:25'),
+(14, 2, 'Balance Comprobación', '2017-12-08 19:39:57', '2017-12-08 19:51:49'),
+(15, 2, 'Balance General', '2017-12-09 17:58:05', '2017-12-09 17:58:05');
 
 -- --------------------------------------------------------
 
@@ -335,8 +337,7 @@ CREATE TABLE `cont_asientos` (
 --
 
 INSERT INTO `cont_asientos` (`id`, `comprobante`, `descripcion`, `fecha`, `status`, `cont_configs_id`, `created_at`, `updated_at`) VALUES
-(1, '2017000012', 'azdasdas', '2017-12-04', 1, 1, '2017-12-05 01:53:56', '2017-12-05 01:53:56'),
-(2, '201712000003', 'segundo asiento', '2017-12-05', 1, 1, '2017-12-06 20:15:15', '2017-12-06 20:15:15');
+(3, '2017120000001', 'primer asiento', '2017-12-15', 1, 1, '2017-12-08 22:35:29', '2017-12-08 22:35:29');
 
 -- --------------------------------------------------------
 
@@ -348,11 +349,11 @@ CREATE TABLE `cont_asiento_detalles` (
   `id` int(10) UNSIGNED NOT NULL,
   `cont_asientos_id` int(10) UNSIGNED NOT NULL,
   `cont__master_accounts_id` int(10) UNSIGNED NOT NULL,
-  `cont_auxiliares_id` int(11) DEFAULT '0',
+  `cont_auxiliares_id` int(11) DEFAULT NULL,
   `cont_configs_id` int(10) UNSIGNED NOT NULL,
   `referencia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `debe` double(15,2) DEFAULT '0.00',
-  `haber` double(15,2) DEFAULT '0.00',
+  `debe` double(15,2) NOT NULL DEFAULT '0.00',
+  `haber` double(15,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -362,11 +363,8 @@ CREATE TABLE `cont_asiento_detalles` (
 --
 
 INSERT INTO `cont_asiento_detalles` (`id`, `cont_asientos_id`, `cont__master_accounts_id`, `cont_auxiliares_id`, `cont_configs_id`, `referencia`, `debe`, `haber`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 0, 1, NULL, 125000.00, NULL, '2017-12-05 01:55:18', '2017-12-05 01:55:18'),
-(2, 1, 2, 2, 1, 'any references', NULL, 125000.00, '2017-12-05 01:59:08', '2017-12-05 01:59:08'),
-(4, 1, 3, 3, 1, NULL, NULL, 30000.00, '2017-12-06 20:19:32', '2017-12-06 20:19:32'),
-(5, 2, 2, 0, 1, NULL, 130000.00, NULL, '2017-12-06 20:19:58', '2017-12-06 20:19:58'),
-(6, 2, 3, 0, 1, NULL, NULL, 130000.00, '2017-12-06 20:20:20', '2017-12-06 20:20:20');
+(1, 3, 3, 0, 1, NULL, 100000.00, 0.00, '2017-12-08 22:38:51', '2017-12-08 22:38:51'),
+(2, 3, 2, 0, 1, NULL, 0.00, 120000.00, '2017-12-08 22:39:35', '2017-12-08 22:39:35');
 
 -- --------------------------------------------------------
 
@@ -499,9 +497,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (95, '2017_06_24_192633_create_com_ordenes_detalles_table', 3),
 (97, '2017_11_30_161348_create_cont_configs_table', 4),
 (100, '2017_11_30_214600_create_cont__master_accounts_table', 5),
-(104, '2018_03_20_174120_create_users_table', 6),
 (106, '2017_12_04_145241_create_cont_auxiliares_table', 7),
-(129, '2017_12_04_162956_create_cont_asientos_table', 8);
+(129, '2017_12_04_162956_create_cont_asientos_table', 8),
+(132, '2017_12_04_175522_create_cont_asiento_detalles_table', 9),
+(133, '2018_03_20_174120_create_users_table', 9);
 
 -- --------------------------------------------------------
 
@@ -522,7 +521,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', 'Puede acceder a funciones que solo los programadores pueden', '2017-06-18 16:37:22', '2017-09-03 06:28:00'),
+(1, 'Administrador', 'Puede crear Usuarios para los sitemas', '2017-06-18 16:37:22', '2017-12-08 20:14:43'),
 (2, 'Operador', 'Usuario para otorgar a los trabajadores', '2017-09-03 06:28:30', '2017-09-03 06:28:30'),
 (3, 'Programador', 'Usuario que tiene lo máximos permisos de programación', '2017-11-30 21:22:51', '2017-11-30 21:22:51');
 
@@ -566,7 +565,9 @@ INSERT INTO `sub_area` (`id_sub_area`, `area_id`, `nombre`, `descripcion`, `ruta
 (19, 10, 'Administrar Cuentas', 'Módulo para administrar  la cuentas contables', 'Contabilidad\\MaestroCuentas.index', '2017-12-01 00:55:38', '2017-12-01 01:38:28'),
 (20, 11, 'Administrar Auxiliares', 'Módulo para administrar los auxiliares de los maestros de cuentas', 'Contabilidad\\Auxiliares.index', '2017-12-04 19:13:39', '2017-12-04 19:27:48'),
 (21, 12, 'Administrar Asientos', 'Módulo para administrar los asientos de contabilidad', 'Contabilidad\\Asientos.index', '2017-12-04 20:44:29', '2017-12-04 20:44:29'),
-(22, 13, 'Generar Libro Mayor', 'Módulo para generar el libro mayor de contabilidad', 'Contabilidad\\Reportes.libro_mayor', '2017-12-06 16:46:27', '2017-12-06 16:46:27');
+(22, 13, 'Generar Libro Mayor', 'Módulo para generar el libro mayor de contabilidad', 'Contabilidad\\Reportes.libro_mayor', '2017-12-06 16:46:27', '2017-12-06 16:46:27'),
+(23, 14, 'Generar Balance', 'Módulo para generar el balance de comprobación de contabilidad', 'Contabilidad\\Reportes.balance_comprobacion', '2017-12-08 19:40:57', '2017-12-08 19:40:57'),
+(24, 15, 'Balance General', 'Módulo para generar el balance general de contabilidad', 'Contabilidad\\Reportes.balance_general', '2017-12-09 18:00:06', '2017-12-09 18:00:06');
 
 -- --------------------------------------------------------
 
@@ -595,7 +596,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `nac`, `cedula`, `usuario`, `telefono`, `password`, `rol_id`, `departamento_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Alvaro Antonio', 'Guedez Crespo', 'V', '21202500', 'admin', '04124362753', '$2y$10$xk7zzK./nW98EHkrwwuaFeUfR3CVWrRDQffmpZHPTIx1/NXsTGyWe', 3, 2, 'Xrjuwn6nhrYrdtCdZbcV23XgqzPVXgy4svOaHXKW4NdaEycvc1ZwxVfrdATM', '2017-12-04 04:00:00', '2017-12-06 17:17:34');
+(1, 'Alvaro Antonio', 'Guedez Crespo', 'V', '21202500', 'admin', '04124362753', '$2y$10$2338uJaf3rGQ5VE4gn6sC.v6ip38uA/BGepWpCCIjL1ZajaCfpzIe', 3, 2, NULL, '2017-12-04 04:00:00', '2017-12-09 18:00:25');
 
 --
 -- Índices para tablas volcadas
@@ -686,7 +687,8 @@ ALTER TABLE `cont_asientos`
 ALTER TABLE `cont_asiento_detalles`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cont_asiento_detalles_cont_asientos_id_foreign` (`cont_asientos_id`),
-  ADD KEY `cont_asiento_detalles_cont__master_accounts_id_foreign` (`cont__master_accounts_id`);
+  ADD KEY `cont_asiento_detalles_cont__master_accounts_id_foreign` (`cont__master_accounts_id`),
+  ADD KEY `cont_asiento_detalles_cont_configs_id_foreign` (`cont_configs_id`);
 
 --
 -- Indices de la tabla `cont_auxiliares`
@@ -750,12 +752,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_acceso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `com_configs`
 --
@@ -805,12 +807,12 @@ ALTER TABLE `com_unidades`
 -- AUTO_INCREMENT de la tabla `cont_asientos`
 --
 ALTER TABLE `cont_asientos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `cont_asiento_detalles`
 --
 ALTER TABLE `cont_asiento_detalles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `cont_auxiliares`
 --
@@ -835,7 +837,7 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -845,7 +847,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sub_area`
 --
 ALTER TABLE `sub_area`
-  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_sub_area` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
@@ -897,7 +899,8 @@ ALTER TABLE `cont_asientos`
 --
 ALTER TABLE `cont_asiento_detalles`
   ADD CONSTRAINT `cont_asiento_detalles_cont__master_accounts_id_foreign` FOREIGN KEY (`cont__master_accounts_id`) REFERENCES `cont__master_accounts` (`id`),
-  ADD CONSTRAINT `cont_asiento_detalles_cont_asientos_id_foreign` FOREIGN KEY (`cont_asientos_id`) REFERENCES `cont_asientos` (`id`);
+  ADD CONSTRAINT `cont_asiento_detalles_cont_asientos_id_foreign` FOREIGN KEY (`cont_asientos_id`) REFERENCES `cont_asientos` (`id`),
+  ADD CONSTRAINT `cont_asiento_detalles_cont_configs_id_foreign` FOREIGN KEY (`cont_configs_id`) REFERENCES `cont_configs` (`id`);
 
 --
 -- Filtros para la tabla `cont_auxiliares`

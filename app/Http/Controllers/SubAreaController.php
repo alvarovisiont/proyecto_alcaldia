@@ -46,7 +46,7 @@ class SubAreaController extends Controller
 
         $this->validate($request, [
 
-            'nombre' => 'required|unique:sub_area',
+            'nombre' => 'required',
             'descripcion' => 'required|max:220',
 
             ]);

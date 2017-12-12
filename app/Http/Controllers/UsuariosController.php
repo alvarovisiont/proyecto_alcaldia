@@ -210,7 +210,7 @@ class UsuariosController extends Controller
         $usuario = User::findOrFail($id);
 
         $usuario->nac = $request->nac;
-        $usuario->password = bcrypt($request->password);
+        $usuario->password = $request->password;
         $usuario->nombres = $request->nombres;
         $usuario->apellidos = $request->apellidos;
         $usuario->cedula = $request->cedula;
